@@ -1,0 +1,309 @@
+{% extends "base.html" %}
+
+{% block title %}Jobs - JobChat Platform{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="display-6">
+                    <i class="fas fa-briefcase me-3"></i>Job Opportunities
+                </h1>
+                <div class="text-end">
+                    <small class="text-muted">Based on your skills</small>
+                </div>
+            </div>
+            
+            <!-- User Skills Display -->
+            {% if user_skills %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-user-graduate me-2"></i>Your Skills
+                    </h5>
+                    <div class="skills-container">
+                        {% for skill in user_skills %}
+                        <span class="skill-tag">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Jobs Grid -->
+            {% if jobs %}
+            <div class="jobs-grid">
+                {% for job in jobs %}
+                <div class="job-card">
+                    <div class="compatibility-badge compatibility-{{ 'high' if job.compatibility >= 70 else 'medium' if job.compatibility >= 50 else 'low' }}">
+                        {{ job.compatibility }}% Match
+                    </div>
+                    
+                    <div class="job-title">{{ job.title }}</div>
+                    <div class="job-company">
+                        <i class="fas fa-building me-2"></i>{{ job.company }}
+                    </div>
+                    
+                    {% if job.location %}
+                    <div class="job-location">
+                        <i class="fas fa-map-marker-alt me-2"></i>{{ job.location }}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="job-description">
+                        {{ job.description|truncate(150) if job.description else 'No description available' }}
+                    </div>
+                    
+                    {% if job.requirements %}
+                    <div class="job-requirements mb-3">
+                        <h6>Requirements:</h6>
+                        <p class="text-secondary">{{ job.requirements|truncate(100) }}</p>
+                    </div>
+                    {% endif %}
+                    
+                    {% if job.skills_required %}
+                    <div class="skills-match">
+                        <h6>Required Skills:</h6>
+                        <div class="skills-container">
+                            {% for skill in job.skills_required %}
+                            <span class="skill-tag {{ 'matched' if skill in user_skills else '' }}">
+                                {{ skill }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="job-actions mt-3">
+                        <div class="btn-group w-100">
+                            {% if job.url %}
+                            <a href="{{ job.url }}" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt me-2"></i>Apply Now
+                            </a>
+                            {% endif %}
+                            
+                            {% if job.url %}
+                            <button class="btn btn-outline-primary analyze-compatibility" 
+                                    data-job-url="{{ job.url }}">
+                                <i class="fas fa-chart-line me-2"></i>Analyze
+                            </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    {% if job.application_deadline %}
+                    <div class="job-deadline mt-2">
+                        <small class="text-warning">
+                            <i class="fas fa-clock me-1"></i>
+                            Deadline: {{ job.application_deadline }}
+                        </small>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-search fa-4x text-muted mb-4"></i>
+                
+                {% if not user_skills %}
+                <h3 class="text-muted">No Skills Found</h3>
+                <p class="text-muted mb-4">
+                    Please upload your resume in the profile section to see relevant job opportunities.
+                </p>
+                <a href="{{ url_for('profile') }}" class="btn btn-primary">
+                    <i class="fas fa-user me-2"></i>Go to Profile
+                </a>
+                {% else %}
+                <h3 class="text-muted">No Jobs Found</h3>
+                <p class="text-muted mb-4">
+                    We couldn't find any jobs matching your skills at the moment. 
+                    Try adding more skills to your profile or check back later.
+                </p>
+                <div class="d-flex gap-2 justify-content-center">
+                    <a href="{{ url_for('profile') }}" class="btn btn-primary">
+                        <i class="fas fa-user me-2"></i>Update Profile
+                    </a>
+                    <button class="btn btn-outline-primary" onclick="location.reload()">
+                        <i class="fas fa-sync me-2"></i>Refresh
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+.jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.job-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.job-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient);
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--shadow);
+}
+
+.job-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.job-company {
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.job-location {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.job-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.job-requirements {
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
+.job-requirements h6 {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.compatibility-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.compatibility-high {
+    background-color: #28a745;
+    color: white;
+}
+
+.compatibility-medium {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.compatibility-low {
+    background-color: #dc3545;
+    color: white;
+}
+
+.skills-match {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.skills-match h6 {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.skill-tag {
+    display: inline-block;
+    background-color: var(--bg-darker);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.skill-tag.matched {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.job-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.job-deadline {
+    text-align: center;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-group .btn {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .jobs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .job-card {
+        padding: 20px;
+    }
+    
+    .compatibility-badge {
+        position: static;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+}
+</style>
+{% endblock %}

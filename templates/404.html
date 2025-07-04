@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - JobChat Platform{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+            <div class="error-page">
+                <div class="error-code">404</div>
+                <div class="error-message">
+                    <h1>Page Not Found</h1>
+                    <p class="lead">The page you're looking for doesn't exist.</p>
+                </div>
+                <div class="error-actions">
+                    <a href="{{ url_for('chat') if session.user_id else url_for('landing') }}" class="btn btn-primary">
+                        <i class="fas fa-home me-2"></i>Go Home
+                    </a>
+                    <button onclick="history.back()" class="btn btn-outline-primary">
+                        <i class="fas fa-arrow-left me-2"></i>Go Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.error-page {
+    padding: 60px 0;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 30px;
+}
+
+.error-message h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+}
+
+.error-message .lead {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.error-actions .btn {
+    margin: 0 10px;
+}
+
+@media (max-width: 768px) {
+    .error-code {
+        font-size: 6rem;
+    }
+    
+    .error-message h1 {
+        font-size: 2rem;
+    }
+    
+    .error-actions .btn {
+        display: block;
+        margin: 10px 0;
+        width: 200px;
+    }
+}
+</style>
+{% endblock %}

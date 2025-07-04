@@ -1,0 +1,407 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - JobChat Platform{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-avatar-container">
+                    <img src="{{ url_for('uploaded_file', filename=user.profile_image) if user.profile_image else 'https://via.placeholder.com/120x120/E55C44/ffffff?text=' + (user.name[0] if user.name else user.username[0]) }}" 
+                         alt="Profile Avatar" class="profile-avatar">
+                </div>
+                <div class="profile-name">{{ user.name if user.name else user.username }}</div>
+                <div class="profile-username">@{{ user.username }}</div>
+            </div>
+            
+            <div class="row">
+                <!-- Profile Information -->
+                <div class="col-lg-6">
+                    <div class="profile-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-user"></i>Profile Information
+                        </h2>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="POST" action="{{ url_for('update_profile') }}" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" 
+                                               value="{{ user.name if user.name else '' }}" 
+                                               placeholder="Enter your full name">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="profile_image" class="form-label">Profile Image</label>
+                                        <input type="file" class="form-control" id="profile_image" name="profile_image" 
+                                               accept="image/*">
+                                        <div class="form-text">Upload PNG, JPG, JPEG, or GIF images only</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username" 
+                                               value="{{ user.username }}" disabled>
+                                        <div class="form-text">Username cannot be changed</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" 
+                                               value="{{ user.email }}" disabled>
+                                        <div class="form-text">Email cannot be changed</div>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-2"></i>Update Profile
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resume Section -->
+                    <div class="profile-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-file-pdf"></i>Resume
+                        </h2>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                {% if resumes %}
+                                <div class="resume-list">
+                                    {% for resume in resumes %}
+                                    <div class="resume-item d-flex justify-content-between align-items-center p-3 mb-2 bg-darker rounded">
+                                        <div>
+                                            <h6 class="mb-1">{{ resume.filename }}</h6>
+                                            <small class="text-muted">
+                                                Uploaded: {{ resume.uploaded_at.strftime('%B %d, %Y') if resume.uploaded_at else 'Unknown' }}
+                                            </small>
+                                        </div>
+                                        <div class="text-success">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                
+                                <div class="resume-upload">
+                                    <form method="POST" action="{{ url_for('upload_resume') }}" enctype="multipart/form-data">
+                                        <input type="file" name="resume" id="resume-upload" accept=".pdf">
+                                        <label for="resume-upload" class="upload-label">
+                                            <i class="fas fa-cloud-upload-alt fa-2x mb-3"></i>
+                                            <h5>Upload Resume</h5>
+                                            <p class="mb-0">Click to select a PDF file</p>
+                                            <small class="text-muted">PDF files only, max 16MB</small>
+                                        </label>
+                                        <div class="mt-3">
+                                            <span id="resume-filename" class="text-muted"></span>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mt-3" id="upload-resume-btn" disabled>
+                                            <i class="fas fa-upload me-2"></i>Upload Resume
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills Section -->
+                <div class="col-lg-6">
+                    <div class="profile-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-cogs"></i>Skills
+                        </h2>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Add Skill Form -->
+                                <form id="add-skill-form" class="mb-4">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="skill-name" 
+                                                   name="skill_name" placeholder="Enter skill name">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-select" id="skill-level" name="skill_level">
+                                                <option value="Beginner">Beginner</option>
+                                                <option value="Intermediate" selected>Intermediate</option>
+                                                <option value="Advanced">Advanced</option>
+                                                <option value="Expert">Expert</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-primary mt-2">
+                                        <i class="fas fa-plus me-2"></i>Add Skill
+                                    </button>
+                                </form>
+                                
+                                <!-- Skills List -->
+                                {% if skills %}
+                                <div class="skills-container">
+                                    {% for skill in skills %}
+                                    <div class="skill-item">
+                                        <span class="skill-name">{{ skill.skill_name }}</span>
+                                        
+                                        {% if skill.skill_level %}
+                                        <span class="skill-level">{{ skill.skill_level }}</span>
+                                        {% endif %}
+                                        
+                                        <span class="skill-source">{{ skill.source }}</span>
+                                        
+                                        <button class="skill-delete" data-skill-id="{{ skill.id }}" 
+                                                title="Delete skill">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                <div class="text-center py-4">
+                                    <i class="fas fa-cogs fa-3x text-muted mb-3"></i>
+                                    <h5 class="text-muted">No Skills Added</h5>
+                                    <p class="text-muted">Upload your resume or add skills manually to get started.</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Statistics -->
+                    <div class="profile-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-chart-bar"></i>Statistics
+                        </h2>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row text-center">
+                                    <div class="col-md-4">
+                                        <div class="stat-item">
+                                            <h3 class="text-primary">{{ skills|length }}</h3>
+                                            <p class="text-muted">Skills</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="stat-item">
+                                            <h3 class="text-primary">{{ resumes|length }}</h3>
+                                            <p class="text-muted">Resumes</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="stat-item">
+                                            <h3 class="text-primary">{{ (skills|selectattr('source', 'equalto', 'resume')|list)|length }}</h3>
+                                            <p class="text-muted">Auto-detected</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.profile-header {
+    background: var(--gradient);
+    padding: 40px 0;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.profile-avatar-container {
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+}
+
+.profile-name {
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.profile-username {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+}
+
+.profile-section {
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.section-title i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.resume-upload {
+    border: 2px dashed var(--border-color);
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.resume-upload:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(229, 92, 68, 0.05);
+}
+
+.resume-upload input[type="file"] {
+    display: none;
+}
+
+.upload-label {
+    cursor: pointer;
+    display: block;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.upload-label:hover {
+    color: var(--primary-color);
+}
+
+.resume-item {
+    background-color: var(--bg-darker);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.skill-item {
+    background-color: var(--bg-darker);
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(229, 92, 68, 0.1);
+}
+
+.skill-name {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.skill-level {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background-color: var(--bg-card);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.skill-source {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    background-color: var(--bg-card);
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.skill-delete {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    padding: 0;
+    margin-left: auto;
+}
+
+.skill-delete:hover {
+    color: #dc3545;
+}
+
+.stat-item {
+    padding: 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.stat-item:hover {
+    background-color: var(--bg-darker);
+}
+
+.stat-item h3 {
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.stat-item p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .profile-header {
+        padding: 20px 0;
+    }
+    
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .profile-name {
+        font-size: 1.5rem;
+    }
+    
+    .skills-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .skill-item {
+        justify-content: space-between;
+    }
+}
+</style>
+{% endblock %}

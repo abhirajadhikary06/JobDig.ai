@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}Chat - JobChat Platform{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <!-- Chat Sessions Sidebar -->
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-history me-2"></i>Chat Sessions
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    {% if chat_sessions %}
+                        {% for session in chat_sessions %}
+                        <div class="chat-session-item p-3 border-bottom" data-session-id="{{ session.id }}">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h6 class="mb-1">{{ session.website_url|truncate(30) }}</h6>
+                                    <small class="text-muted">{{ session.scrape_type|title }}</small>
+                                </div>
+                                <small class="text-muted">{{ session.created_at.strftime('%m/%d') if session.created_at else '' }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="p-3 text-center text-muted">
+                            <i class="fas fa-comments fa-2x mb-2"></i>
+                            <p>No chat sessions yet</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Chat Area -->
+        <div class="col-lg-9 col-md-8">
+            <div class="card chat-container">
+                <!-- Start Chat Section -->
+                <div id="start-chat-section" class="card-body text-center">
+                    <div class="py-5">
+                        <i class="fas fa-comments fa-4x text-primary mb-4"></i>
+                        <h3 class="mb-4">Start a New Chat Session</h3>
+                        <p class="text-muted mb-4">Enter a job website URL to start analyzing and chatting with the content.</p>
+                        
+                        <form id="start-chat-form" class="row g-3">
+                            <div class="col-12">
+                                <input type="url" class="form-control form-control-lg" 
+                                       id="website-url" placeholder="Enter job website URL (e.g., https://example.com/jobs/developer)">
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="scrape-controls justify-content-center">
+                                    <button type="button" class="scrape-type-btn active" data-type="content">
+                                        <i class="fas fa-file-text me-2"></i>Content
+                                    </button>
+                                    <button type="button" class="scrape-type-btn" data-type="links">
+                                        <i class="fas fa-link me-2"></i>Links
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg" id="start-chat-btn">
+                                    <i class="fas fa-play me-2"></i>Start Chat
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Chat Interface -->
+                <div id="chat-interface" style="display: none;">
+                    <div class="chat-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="fas fa-comments me-2"></i>Chat Session
+                            </h5>
+                            <button class="btn btn-outline-primary btn-sm" onclick="location.reload()">
+                                <i class="fas fa-plus me-1"></i>New Chat
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Messages will be loaded here -->
+                    </div>
+                    
+                    <div class="chat-input">
+                        <form id="send-message-form" class="d-flex gap-2">
+                            <input type="text" class="form-control" id="message-input" 
+                                   placeholder="Ask something about the job posting...">
+                            <button type="submit" class="btn btn-primary" id="send-message-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.chat-session-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chat-session-item:hover {
+    background-color: var(--bg-darker);
+}
+
+.chat-session-item:last-child {
+    border-bottom: none !important;
+}
+
+.scrape-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.scrape-type-btn {
+    padding: 12px 24px;
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-darker);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.scrape-type-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.scrape-type-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.chat-messages {
+    min-height: 400px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: var(--bg-darker);
+}
+
+.message {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    max-width: 80%;
+    word-wrap: break-word;
+    animation: fadeIn 0.3s ease;
+}
+
+.message.user {
+    background: var(--gradient);
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+}
+
+.message.assistant {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-bottom-left-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.message-content {
+    margin-bottom: 5px;
+}
+
+.message-content h1,
+.message-content h2,
+.message-content h3 {
+    color: inherit;
+    margin: 10px 0;
+}
+
+.message-content ul,
+.message-content ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.message-content p {
+    margin: 5px 0;
+}
+
+.message-content code {
+    background-color: var(--bg-darker);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.message-content pre {
+    background-color: var(--bg-darker);
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.message-time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.chat-input {
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    border-radius: 0 0 12px 12px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+{% endblock %}

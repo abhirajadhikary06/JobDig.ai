@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to JobChat Platform{% endblock %}
+
+{% block content %}
+<div class="landing-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="hero-title">Chat with Any Job Website</h1>
+                    <p class="hero-subtitle">
+                        Scrape job websites, extract information, and get AI-powered insights 
+                        to find your perfect career match.
+                    </p>
+                    
+                    <div class="auth-toggle">
+                        <button class="btn btn-outline-primary active" data-type="login">Login</button>
+                        <button class="btn btn-outline-primary" data-type="signup">Sign Up</button>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <div class="auth-form" id="login-form">
+                        <form method="POST" action="{{ url_for('login') }}">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-sign-in-alt me-2"></i>Login
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Signup Form -->
+                    <div class="auth-form" id="signup-form" style="display: none;">
+                        <form method="POST" action="{{ url_for('signup') }}">
+                            <div class="mb-3">
+                                <label for="signup-name" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="signup-name" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="signup-username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="signup-username" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="signup-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="signup-email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="signup-password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="signup-password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-user-plus me-2"></i>Sign Up
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Scrape Any Job Website</h3>
+                        <p>Extract content and links from job postings using advanced scraping technology.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI-Powered Chat</h3>
+                        <p>Chat with scraped data using Gemini AI to get instant answers about job requirements.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Smart Job Matching</h3>
+                        <p>Upload your resume and get matched with relevant jobs based on your skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.hero-features {
+    padding: 2rem 0;
+}
+
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+</style>
+{% endblock %}
