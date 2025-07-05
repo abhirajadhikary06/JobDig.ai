@@ -1,3 +1,4 @@
+from fileinput import filename
 import os
 import json
 from flask import render_template, request, redirect, url_for, flash, session, jsonify, send_from_directory
@@ -447,6 +448,16 @@ def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
 
+app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['DEFAULT_DP'] = 'default_dp.png'
+
 @app.route('/uploads/profiles/<filename>')
-def serve_profile_image(filename):  # ✅ new unique name
-    return send_from_directory(os.path.join(app.config['UPLOAD_FOLDER'], 'profiles'), filename)
+def serve_profile_image(filename):
+    profile_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'profiles')
+    image_path = os.path.join(profile_dir, filename)
+
+    if os.path.exists(image_path):
+        return send_from_directory(profile_dir, filename)
+    else:
+        # Redirect to static default image
+        return redirect(url_for('static', filename=f'images/{app.config["DEFAULT_DP"]}'))
