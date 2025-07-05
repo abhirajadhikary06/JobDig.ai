@@ -1,24 +1,141 @@
 {% extends "base.html" %}
-
-{% block title %}Page Not Found - JobChat Platform{% endblock %}
+{% block title %}Page Not Found - JobChunk.ai{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 text-center">
-            <div class="error-page">
-                <div class="error-code">404</div>
-                <div class="error-message">
-                    <h1>Page Not Found</h1>
-                    <p class="lead">The page you're looking for doesn't exist.</p>
+<div class="error-page-container">
+    <div class="error-content">
+        <!-- Animated Illustration -->
+        <div class="error-illustration">
+            <div class="search-container">
+                <div class="magnifying-glass">
+                    <div class="glass-handle"></div>
+                    <div class="glass-lens">
+                        <i class="fas fa-question"></i>
+                    </div>
                 </div>
-                <div class="error-actions">
-                    <a href="{{ url_for('chat') if session.user_id else url_for('landing') }}" class="btn btn-primary">
-                        <i class="fas fa-home me-2"></i>Go Home
+                <div class="search-particles">
+                    <div class="particle particle-1"></div>
+                    <div class="particle particle-2"></div>
+                    <div class="particle particle-3"></div>
+                    <div class="particle particle-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Information -->
+        <div class="error-info">
+            <div class="error-code">404</div>
+            <h1 class="error-title">Oops! Page Not Found</h1>
+            <p class="error-description">
+                The page you're looking for seems to have taken a detour. 
+                Don't worry, let's get you back on track!
+            </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="error-actions">
+            <a href="{{ url_for('chat') if session.user_id else url_for('landing') }}" class="action-btn primary-btn">
+                <div class="btn-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="btn-content">
+                    <span class="btn-title">Go Home</span>
+                    <span class="btn-subtitle">Back to safety</span>
+                </div>
+            </a>
+            
+            <button onclick="history.back()" class="action-btn secondary-btn">
+                <div class="btn-icon">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="btn-content">
+                    <span class="btn-title">Go Back</span>
+                    <span class="btn-subtitle">Previous page</span>
+                </div>
+            </button>
+        </div>
+
+        <!-- Quick Navigation -->
+        <div class="quick-nav">
+            <h3 class="nav-title">Popular Destinations</h3>
+            <div class="nav-grid">
+                <a href="{{ url_for('landing') }}" class="nav-card">
+                    <div class="nav-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="nav-info">
+                        <h4>Get Started</h4>
+                        <p>Begin your journey</p>
+                    </div>
+                </a>
+                
+                {% if session.user_id %}
+                <a href="{{ url_for('jobs') }}" class="nav-card">
+                    <div class="nav-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="nav-info">
+                        <h4>Browse Jobs</h4>
+                        <p>Find opportunities</p>
+                    </div>
+                </a>
+                
+                <a href="{{ url_for('profile') }}" class="nav-card">
+                    <div class="nav-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="nav-info">
+                        <h4>Your Profile</h4>
+                        <p>Manage account</p>
+                    </div>
+                </a>
+                
+                <a href="{{ url_for('chat') }}" class="nav-card">
+                    <div class="nav-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="nav-info">
+                        <h4>AI Chat</h4>
+                        <p>Get assistance</p>
+                    </div>
+                </a>
+                {% else %}
+                <a href="#" class="nav-card" onclick="alert('Please sign in to access this feature')">
+                    <div class="nav-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </div>
+                    <div class="nav-info">
+                        <h4>Sign In</h4>
+                        <p>Access your account</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="nav-card" onclick="alert('Please sign in to access this feature')">
+                    <div class="nav-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="nav-info">
+                        <h4>Sign Up</h4>
+                        <p>Create account</p>
+                    </div>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Help Section -->
+        <div class="help-section">
+            <div class="help-card">
+                <div class="help-icon">
+                    <i class="fas fa-life-ring"></i>
+                </div>
+                <div class="help-content">
+                    <h4>Need Help?</h4>
+                    <p>If you believe this is an error, please contact our support team.</p>
+                    <a href="mailto:support@jobchunk.ai" class="help-link">
+                        <i class="fas fa-envelope"></i>
+                        Contact Support
                     </a>
-                    <button onclick="history.back()" class="btn btn-outline-primary">
-                        <i class="fas fa-arrow-left me-2"></i>Go Back
-                    </button>
                 </div>
             </div>
         </div>
@@ -26,47 +143,525 @@
 </div>
 
 <style>
-.error-page {
-    padding: 60px 0;
+/* ===== INTUITIVE 404 PAGE STYLES ===== */
+:root {
+    --primary-color: #000000;
+    --secondary-color: #404040;
+    --accent-color: #22c55e;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-quaternary: #e2e8f0;
+    --border-light: rgba(0, 0, 0, 0.06);
+    --border-medium: rgba(0, 0, 0, 0.12);
+    --text-primary: #000000;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.error-page-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-content {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+/* ===== ANIMATED ILLUSTRATION ===== */
+.error-illustration {
+    margin-bottom: 3rem;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.search-container {
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+.magnifying-glass {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.glass-lens {
+    width: 80px;
+    height: 80px;
+    border: 6px solid var(--primary-color);
+    border-radius: 50%;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 2;
+}
+
+.glass-lens i {
+    font-size: 2rem;
+    color: var(--text-muted);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.glass-handle {
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    width: 40px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 4px;
+    transform: rotate(45deg);
+    box-shadow: var(--shadow-md);
+}
+
+.search-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.particle-1 {
+    top: 20%;
+    left: 20%;
+    animation: particle-float 3s ease-in-out infinite;
+}
+
+.particle-2 {
+    top: 30%;
+    right: 25%;
+    animation: particle-float 2.5s ease-in-out infinite 0.5s;
+}
+
+.particle-3 {
+    bottom: 30%;
+    left: 30%;
+    animation: particle-float 3.5s ease-in-out infinite 1s;
+}
+
+.particle-4 {
+    bottom: 20%;
+    right: 20%;
+    animation: particle-float 2.8s ease-in-out infinite 1.5s;
+}
+
+/* ===== ERROR INFORMATION ===== */
+.error-info {
+    margin-bottom: 3rem;
 }
 
 .error-code {
     font-size: 8rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     line-height: 1;
-    margin-bottom: 30px;
+    margin-bottom: 1rem;
+    animation: glow 3s ease-in-out infinite alternate;
 }
 
-.error-message h1 {
+.error-title {
     font-size: 2.5rem;
+    font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
 }
 
-.error-message .lead {
+.error-description {
+    font-size: 1.125rem;
     color: var(--text-secondary);
-    font-size: 1.2rem;
-    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
-.error-actions .btn {
-    margin: 0 10px;
+/* ===== ACTION BUTTONS ===== */
+.error-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
 }
 
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: var(--transition);
+    cursor: pointer;
+    min-width: 180px;
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.primary-btn {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.primary-btn:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    color: white;
+    text-decoration: none;
+}
+
+.secondary-btn {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-medium);
+}
+
+.secondary-btn:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.secondary-btn .btn-icon {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.btn-content {
+    text-align: left;
+}
+
+.btn-title {
+    display: block;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.btn-subtitle {
+    display: block;
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+/* ===== QUICK NAVIGATION ===== */
+.quick-nav {
+    margin-bottom: 3rem;
+}
+
+.nav-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+}
+
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.nav-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-card:hover {
+    background: var(--bg-secondary);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.nav-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+.nav-info {
+    text-align: left;
+}
+
+.nav-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    color: var(--text-primary);
+}
+
+.nav-info p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ===== HELP SECTION ===== */
+.help-section {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.help-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    text-align: center;
+}
+
+.help-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.help-content h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.help-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.help-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.help-link:hover {
+    background: var(--bg-primary);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes particle-float {
+    0%, 100% {
+        transform: translate(0px, 0px);
+        opacity: 0.6;
+    }
+    33% {
+        transform: translate(10px, -10px);
+        opacity: 1;
+    }
+    66% {
+        transform: translate(-5px, 5px);
+        opacity: 0.8;
+    }
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        text-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
+    .error-page-container {
+        padding: 1rem;
+    }
+    
     .error-code {
         font-size: 6rem;
     }
     
-    .error-message h1 {
+    .error-title {
         font-size: 2rem;
     }
     
-    .error-actions .btn {
-        display: block;
-        margin: 10px 0;
-        width: 200px;
+    .error-description {
+        font-size: 1rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .action-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .nav-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+    }
+    
+    .nav-card {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .nav-info {
+        text-align: center;
+    }
+    
+    .error-illustration {
+        height: 150px;
+        margin-bottom: 2rem;
+    }
+    
+    .magnifying-glass {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .glass-lens {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .glass-lens i {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-code {
+        font-size: 4.5rem;
+    }
+    
+    .error-title {
+        font-size: 1.75rem;
+    }
+    
+    .nav-title {
+        font-size: 1.25rem;
+    }
+    
+    .help-card {
+        padding: 1.5rem;
+    }
+    
+    .action-btn {
+        padding: 1rem;
+        min-width: auto;
+    }
+    
+    .btn-content {
+        text-align: center;
     }
 }
 </style>

@@ -1,125 +1,1126 @@
 {% extends "base.html" %}
+{% block title %}JobChunk.ai - AI-Powered Job Search Platform{% endblock %}
 
-{% block title %}Welcome to JobChat Platform{% endblock %}
+{% block navbar %}
+<!-- Custom navbar for landing page -->
+<nav class="landing-navbar">
+    <div class="navbar-container">
+        <a class="navbar-brand" href="{{ url_for('landing') }}">
+            <div class="brand-container" style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="brand-logo" style="position: relative;">
+                    <i class="fas fa-robot"></i>
+                    <div class="logo-pulse"></div>
+                </div>
+                <span class="brand-name" style="font-weight: 700; font-size: 1.5rem; color: #000;">JobChunk<span class="brand-suffix" style="color: #22c55e;">.ai</span></span>
+            </div>
+        </a>
+        
+        <div class="navbar-actions">
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#testimonials" class="nav-link">Reviews</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <a href="#login-section" class="nav-link-cta">Get Started</a>
+        </div>
+    </div>
+</nav>
+{% endblock %}
 
 {% block content %}
-<div class="landing-hero">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="hero-content">
-                    <h1 class="hero-title">Chat with Any Job Website</h1>
-                    <p class="hero-subtitle">
-                        Scrape job websites, extract information, and get AI-powered insights 
-                        to find your perfect career match.
-                    </p>
-                    
-                    <div class="auth-toggle">
-                        <button class="btn btn-outline-primary active" data-type="login">Login</button>
-                        <button class="btn btn-outline-primary" data-type="signup">Sign Up</button>
-                    </div>
-                    
-                    <!-- Login Form -->
-                    <div class="auth-form" id="login-form">
-                        <form method="POST" action="{{ url_for('login') }}">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
+<div class="landing-page">
+    <!-- Hero Section -->
+    <section class="landing-hero" id="hero">
+        <div class="floating-elements">
+            <div class="floating-element">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="floating-element">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="floating-element">
+                <i class="fas fa-chart-line"></i>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Chat with Any Job Website</h1>
+                        <p class="hero-subtitle">
+                            Scrape job websites, extract information, and get AI-powered insights 
+                            to find your perfect career match. Transform your job search with intelligent automation.
+                        </p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">10K+</span>
+                                <span class="stat-label">Jobs Scraped</span>
                             </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="stat-item">
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label">Companies</span>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">
-                                <i class="fas fa-sign-in-alt me-2"></i>Login
-                            </button>
-                        </form>
-                    </div>
-                    
-                    <!-- Signup Form -->
-                    <div class="auth-form" id="signup-form" style="display: none;">
-                        <form method="POST" action="{{ url_for('signup') }}">
-                            <div class="mb-3">
-                                <label for="signup-name" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="signup-name" name="name">
+                            <div class="stat-item">
+                                <span class="stat-number">95%</span>
+                                <span class="stat-label">Success Rate</span>
                             </div>
-                            <div class="mb-3">
-                                <label for="signup-username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="signup-username" name="username" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="signup-email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="signup-email" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="signup-password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="signup-password" name="password" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">
-                                <i class="fas fa-user-plus me-2"></i>Sign Up
-                            </button>
-                        </form>
+                        </div>
+                        
+                        <div class="hero-cta">
+                            <a href="#login-section" class="btn-primary-large">
+                                <span>Start Your Job Search</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="#features" class="btn-secondary-large">
+                                <i class="fas fa-play"></i>
+                                <span>Watch Demo</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="col-lg-6">
-                <div class="hero-features">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-globe"></i>
+                
+                <div class="col-lg-6">
+                    <div class="hero-visual">
+                        <div class="hero-card main-card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="card-title">AI Job Assistant</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="chat-bubble">
+                                    <p>"Find me software engineer jobs at Google with 3+ years experience"</p>
+                                </div>
+                                <div class="chat-response">
+                                    <p>Found 12 matching positions! Here are the top 3 with salary ranges and requirements...</p>
+                                </div>
+                            </div>
                         </div>
-                        <h3>Scrape Any Job Website</h3>
-                        <p>Extract content and links from job postings using advanced scraping technology.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-robot"></i>
+                        
+                        <div class="hero-card floating-card-1">
+                            <div class="mini-stat">
+                                <i class="fas fa-briefcase"></i>
+                                <span>2,847 Jobs Today</span>
+                            </div>
                         </div>
-                        <h3>AI-Powered Chat</h3>
-                        <p>Chat with scraped data using Gemini AI to get instant answers about job requirements.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-line"></i>
+                        
+                        <div class="hero-card floating-card-2">
+                            <div class="mini-stat">
+                                <i class="fas fa-chart-line"></i>
+                                <span>98% Match Rate</span>
+                            </div>
                         </div>
-                        <h3>Smart Job Matching</h3>
-                        <p>Upload your resume and get matched with relevant jobs based on your skills.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features for Modern Job Search</h2>
+                <p class="section-subtitle">Everything you need to land your dream job, powered by AI</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Universal Job Scraping</h3>
+                    <p>Extract job data from any website including LinkedIn, Indeed, Naukri, and company career pages with our advanced scraping technology.</p>
+                    <div class="feature-tags">
+                        <span class="tag">LinkedIn</span>
+                        <span class="tag">Indeed</span>
+                        <span class="tag">Naukri</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Chat</h3>
+                    <p>Chat with scraped job data using Gemini AI to get instant insights about requirements, salary expectations, and application strategies.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Gemini AI</span>
+                        <span class="tag">Real-time</span>
+                        <span class="tag">Smart</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Smart Matching</h3>
+                    <p>Upload your resume and get matched with relevant opportunities based on your skills, experience, and career preferences.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Resume AI</span>
+                        <span class="tag">Matching</span>
+                        <span class="tag">Personalized</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Privacy First</h3>
+                    <p>Your data is encrypted and secure. We never share your information with third parties or compromise your privacy.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Encrypted</span>
+                        <span class="tag">Secure</span>
+                        <span class="tag">Private</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Real-time Updates</h3>
+                    <p>Get notified instantly when new jobs matching your criteria are posted. Never miss an opportunity again.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Instant</span>
+                        <span class="tag">Alerts</span>
+                        <span class="tag">24/7</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Ready</h3>
+                    <p>Access your job search dashboard from anywhere. Fully responsive design that works on all devices.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Mobile</span>
+                        <span class="tag">Responsive</span>
+                        <span class="tag">Cross-platform</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section class="companies-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Trusted by Users In</h2>
+                <p class="section-subtitle">Our platform is trusted by professionals from top companies and institutions worldwide</p>
+            </div>
+            
+            <div class="companies-grid">
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Google" />
+                    <span>Google</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Microsoft" />
+                    <span>Microsoft</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Amazon" />
+                    <span>Amazon</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Meta" />
+                    <span>Meta</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Apple" />
+                    <span>Apple</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Netflix" />
+                    <span>Netflix</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Uber" />
+                    <span>Uber</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Airbnb" />
+                    <span>Airbnb</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Salesforce" />
+                    <span>Salesforce</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Adobe" />
+                    <span>Adobe</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="IBM" />
+                    <span>IBM</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Oracle" />
+                    <span>Oracle</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Tesla" />
+                    <span>Tesla</span>
+                </div>
+                <div class="company-logo">
+                    <img src="/placeholder.svg?height=60&width=120" alt="Spotify" />
+                    <span>Spotify</span>
+                </div>
+            </div>
+            
+            <div class="institutions-section">
+                <h3 class="institutions-title">From Top Institutions</h3>
+                <div class="institutions-grid">
+                    <span class="institution">IIT Delhi</span>
+                    <span class="institution">IIT Bombay</span>
+                    <span class="institution">IIM Ahmedabad</span>
+                    <span class="institution">BITS Pilani</span>
+                    <span class="institution">NIT Trichy</span>
+                    <span class="institution">IIIT Hyderabad</span>
+                    <span class="institution">ISB Hyderabad</span>
+                    <span class="institution">Delhi University</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Users Say</h2>
+                <p class="section-subtitle">Real stories from professionals who transformed their careers</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="user-avatar">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Priya Sharma" />
+                        </div>
+                        <div class="user-info">
+                            <h4 class="user-name">Priya Sharma</h4>
+                            <p class="user-title">Software Engineer @Google</p>
+                            <div class="user-meta">
+                                <span class="verified">✓ Verified</span>
+                                <span class="date">2 days ago</span>
+                            </div>
+                        </div>
+                        <div class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"JobChunk.ai helped me land my dream job at Google! The AI chat feature gave me insights I couldn't find anywhere else. Scraped 200+ job postings in minutes and found the perfect match. 🚀 #JobSearch #AI"</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="engagement">
+                            <span><i class="fas fa-heart"></i> 234</span>
+                            <span><i class="fas fa-retweet"></i> 89</span>
+                            <span><i class="fas fa-comment"></i> 45</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="user-avatar">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Rahul Gupta" />
+                        </div>
+                        <div class="user-info">
+                            <h4 class="user-name">Rahul Gupta</h4>
+                            <p class="user-title">Product Manager @Microsoft</p>
+                            <div class="user-meta">
+                                <span class="verified">✓ Verified</span>
+                                <span class="date">1 week ago</span>
+                            </div>
+                        </div>
+                        <div class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Game changer for job hunting! 🎯 The platform scraped LinkedIn, Indeed, and company sites simultaneously. Got 3 interview calls in the first week. The AI insights about company culture were spot on! Highly recommend 💯"</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="engagement">
+                            <span><i class="fas fa-heart"></i> 567</span>
+                            <span><i class="fas fa-retweet"></i> 123</span>
+                            <span><i class="fas fa-comment"></i> 78</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="user-avatar">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Anita Desai" />
+                        </div>
+                        <div class="user-info">
+                            <h4 class="user-name">Anita Desai</h4>
+                            <p class="user-title">Data Scientist @Amazon</p>
+                            <div class="user-meta">
+                                <span class="verified">✓ Verified</span>
+                                <span class="date">3 days ago</span>
+                            </div>
+                        </div>
+                        <div class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"As a data scientist, I was skeptical about AI job tools. But JobChunk.ai blew my mind! 🤖 The resume matching algorithm is incredibly accurate. Found my Amazon role through their smart recommendations. Worth every rupee! 📊✨"</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="engagement">
+                            <span><i class="fas fa-heart"></i> 892</span>
+                            <span><i class="fas fa-retweet"></i> 234</span>
+                            <span><i class="fas fa-comment"></i> 156</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="user-avatar">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Vikram Singh" />
+                        </div>
+                        <div class="user-info">
+                            <h4 class="user-name">Vikram Singh</h4>
+                            <p class="user-title">DevOps Engineer @Netflix</p>
+                            <div class="user-meta">
+                                <span class="verified">✓ Verified</span>
+                                <span class="date">5 days ago</span>
+                            </div>
+                        </div>
+                        <div class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Switched from manual job hunting to JobChunk.ai and saw immediate results! 🔥 The platform's ability to chat with job data is revolutionary. Asked about salary ranges, got instant answers. Landed Netflix role in 2 weeks! 🎬"</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="engagement">
+                            <span><i class="fas fa-heart"></i> 445</span>
+                            <span><i class="fas fa-retweet"></i> 167</span>
+                            <span><i class="fas fa-comment"></i> 89</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="user-avatar">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Sneha Patel" />
+                        </div>
+                        <div class="user-info">
+                            <h4 class="user-name">Sneha Patel</h4>
+                            <p class="user-title">UX Designer @Uber</p>
+                            <div class="user-meta">
+                                <span class="verified">✓ Verified</span>
+                                <span class="date">1 day ago</span>
+                            </div>
+                        </div>
+                        <div class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"The UI is so intuitive! 🎨 As a designer, I appreciate good UX, and JobChunk.ai nails it. The job scraping is lightning fast, and the AI chat feels like talking to a career counselor. Got my Uber role through their platform! 🚗"</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="engagement">
+                            <span><i class="fas fa-heart"></i> 678</span>
+                            <span><i class="fas fa-retweet"></i> 201</span>
+                            <span><i class="fas fa-comment"></i> 134</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="user-avatar">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Arjun Mehta" />
+                        </div>
+                        <div class="user-info">
+                            <h4 class="user-name">Arjun Mehta</h4>
+                            <p class="user-title">ML Engineer @Meta</p>
+                            <div class="user-meta">
+                                <span class="verified">✓ Verified</span>
+                                <span class="date">4 days ago</span>
+                            </div>
+                        </div>
+                        <div class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Mind = blown! 🤯 The AI understands context better than most recruiters. Asked about ML roles with specific tech stacks, got perfect matches. The scraping covers sites I didn't even know existed. Meta here I come! 🚀 #MachineLearning"</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <div class="engagement">
+                            <span><i class="fas fa-heart"></i> 1.2k</span>
+                            <span><i class="fas fa-retweet"></i> 345</span>
+                            <span><i class="fas fa-comment"></i> 198</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+                <p class="section-subtitle">Choose the plan that fits your job search needs</p>
+            </div>
+            
+            <div class="pricing-toggle">
+                <span class="toggle-label">Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="pricing-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Yearly <span class="discount-badge">Save 20%</span></span>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Starter</h3>
+                        <p class="plan-description">Perfect for casual job seekers</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">₹</span>
+                        <span class="amount monthly-price">99</span>
+                        <span class="amount yearly-price" style="display: none;">79</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>50 job scrapes per month</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Basic AI chat support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>5 resume matches</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Email notifications</span>
+                        </div>
+                        <div class="feature disabled">
+                            <i class="fas fa-times"></i>
+                            <span>Priority support</span>
+                        </div>
+                    </div>
+                    <button class="pricing-btn">Get Started</button>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Professional</h3>
+                        <p class="plan-description">Ideal for active job hunters</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">₹</span>
+                        <span class="amount monthly-price">299</span>
+                        <span class="amount yearly-price" style="display: none;">239</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>500 job scrapes per month</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced AI chat with insights</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited resume matches</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Real-time notifications</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Priority support</span>
+                        </div>
+                    </div>
+                    <button class="pricing-btn primary">Get Started</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Enterprise</h3>
+                        <p class="plan-description">For teams and recruiters</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">₹</span>
+                        <span class="amount monthly-price">999</span>
+                        <span class="amount yearly-price" style="display: none;">799</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited job scrapes</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Custom AI training</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Team collaboration tools</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>API access</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Dedicated support</span>
+                        </div>
+                    </div>
+                    <button class="pricing-btn">Contact Sales</button>
+                </div>
+            </div>
+            
+            <div class="pricing-guarantee">
+                <div class="guarantee-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="guarantee-content">
+                        <h4>30-Day Money Back Guarantee</h4>
+                        <p>Not satisfied? Get a full refund within 30 days, no questions asked.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login/Signup Section -->
+    <section class="auth-section" id="login-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="auth-content">
+                        <h2 class="auth-title">Ready to Transform Your Job Search?</h2>
+                        <p class="auth-subtitle">Join thousands of professionals who have found their dream jobs using our AI-powered platform.</p>
+                        
+                        <div class="auth-benefits">
+                            <div class="benefit-item">
+                                <i class="fas fa-rocket"></i>
+                                <span>Get started in under 2 minutes</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Your data is secure and private</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-support"></i>
+                                <span>24/7 customer support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="auth-container">
+                        <div class="auth-toggle">
+                            <button class="auth-toggle-btn active" data-type="login">Login</button>
+                            <button class="auth-toggle-btn" data-type="signup">Sign Up</button>
+                        </div>
+                        
+                        <!-- Login Form -->
+                        <div class="auth-form" id="login-form">
+                            <form method="POST" action="{{ url_for('login') }}">
+                                <div class="form-group">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
+                                </div>
+                                <button type="submit" class="auth-submit-btn">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    <span>Login to Dashboard</span>
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Signup Form -->
+                        <div class="auth-form" id="signup-form" style="display: none;">
+                            <form method="POST" action="{{ url_for('signup') }}">
+                                <div class="form-group">
+                                    <label for="signup-name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="signup-name" name="name" placeholder="Enter your full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="signup-username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="signup-username" name="username" required placeholder="Choose a username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="signup-email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="signup-email" name="email" required placeholder="Enter your email address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="signup-password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="signup-password" name="password" required placeholder="Create a secure password">
+                                </div>
+                                <button type="submit" class="auth-submit-btn">
+                                    <i class="fas fa-user-plus"></i>
+                                    <span>Create Account</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 <style>
-.hero-features {
-    padding: 2rem 0;
+/* ===== ENHANCED LANDING PAGE STYLES ===== */
+:root {
+    --primary-color: #000000;
+    --secondary-color: #404040;
+    --accent-color: #22c55e;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --info-color: #3b82f6;
+    
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-quaternary: #e2e8f0;
+    
+    --text-primary: #000000;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --text-light: #d1d5db;
+    
+    --border-light: rgba(0, 0, 0, 0.06);
+    --border-medium: rgba(0, 0, 0, 0.12);
+    --border-strong: rgba(0, 0, 0, 0.18);
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 20px;
+    
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.feature-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 2rem;
+/* Global Styles */
+.landing-page {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%, var(--bg-primary) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Landing Navbar */
+.landing-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    transition: var(--transition);
+    height: 70px;
+}
+
+.landing-navbar .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    text-decoration: none;
+}
+
+.nav-link-cta {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.nav-link-cta:hover {
+    background: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+/* Hero Section */
+.landing-hero {
+    min-height: 100vh;
+    padding: 8rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-element {
+    position: absolute;
+    opacity: 0.05;
+    animation: float 6s ease-in-out infinite;
+    font-size: 4rem;
+    color: var(--text-muted);
+}
+
+.floating-element:nth-child(1) {
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+}
+
+.floating-element:nth-child(2) {
+    bottom: 20%;
+    left: 5%;
+    animation-delay: 2s;
+}
+
+.floating-element:nth-child(3) {
+    top: 60%;
+    right: 5%;
+    animation-delay: 4s;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    max-width: 90%;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.hero-stats .stat-item {
     text-align: center;
-    transition: transform 0.3s ease;
 }
 
-.feature-card:hover {
-    transform: translateY(-5px);
+.hero-stats .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
 }
 
-.feature-icon {
-    font-size: 3rem;
-    color: var(--primary-color);
+.hero-stats .stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn-primary-large {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 1.25rem 2rem;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.125rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary-large:hover {
+    background: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-secondary-large {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    color: var(--text-primary);
+    padding: 1.25rem 2rem;
+    border: 2px solid var(--border-medium);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.125rem;
+    transition: var(--transition);
+}
+
+.btn-secondary-large:hover {
+    background: var(--bg-secondary);
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* Hero Visual */
+.hero-visual {
+    position: relative;
+    animation: fadeInRight 0.8s ease-out 0.2s both;
+}
+
+.hero-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-xl);
+    transition: var(--transition);
+}
+
+.main-card {
+    position: relative;
+    z-index: 3;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.chat-bubble {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-lg);
     margin-bottom: 1rem;
 }
 
+.chat-response {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+}
+
+.floating-card-1,
+.floating-card-2 {
+    position: absolute;
+    z-index: 2;
+    animation: float 4s ease-in-out infinite;
+}
+
+.floating-card-1 {
+    top: -20px;
+    right: -30px;
+    animation-delay: 1s;
+}
+
+.floating-card-2 {
+    bottom: -20px;
+    left: -30px;
+    animation-delay: 2s;
+}
+
+.mini-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.mini-stat i {
+    color: var(--accent-color);
+}
+
+/* Section Styles */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Features Section */
+.features-section {
+    padding: 6rem 0;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2xl);
+    border-color: var(--border-medium);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 2rem;
+    transition: var(--transition);
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
 .feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 1rem;
 }
@@ -127,6 +1128,963 @@
 .feature-card p {
     color: var(--text-secondary);
     line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.feature-tags {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Companies Section */
+.companies-section {
+    padding: 6rem 0;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.companies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.company-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-lg);
+    transition: var(--transition);
+}
+
+.company-logo:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.company-logo img {
+    width: 80px;
+    height: 40px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: var(--transition);
+}
+
+.company-logo:hover img {
+    filter: grayscale(0%);
+}
+
+.company-logo span {
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.institutions-section {
+    text-align: center;
+}
+
+.institutions-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+}
+
+.institutions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.institution {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.institution:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    padding: 6rem 0;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--border-medium);
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.user-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.user-title {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.5rem 0;
+}
+
+.user-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.75rem;
+}
+
+.verified {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.date {
+    color: var(--text-muted);
+}
+
+.social-icon {
+    color: #1da1f2;
+    font-size: 1.25rem;
+}
+
+.testimonial-content p {
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.testimonial-footer {
+    border-top: 1px solid var(--border-light);
+    padding-top: 1rem;
+}
+
+.engagement {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.engagement span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.engagement span:hover {
+    color: var(--text-secondary);
+}
+
+/* Pricing Section */
+.pricing-section {
+    padding: 6rem 0;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.pricing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.toggle-label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.discount-badge {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-quaternary);
+    transition: var(--transition);
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: var(--transition);
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.pricing-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2xl);
+    border-color: var(--border-medium);
+}
+
+.pricing-card.popular {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.pricing-card.popular:hover {
+    transform: scale(1.05) translateY(-8px);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.pricing-header {
+    margin-bottom: 2rem;
+}
+
+.plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.plan-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.pricing-price {
+    margin-bottom: 2rem;
+}
+
+.currency {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    vertical-align: top;
+}
+
+.amount {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.period {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.pricing-features {
+    margin-bottom: 2rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.feature i {
+    width: 20px;
+    color: var(--accent-color);
+}
+
+.feature.disabled i {
+    color: var(--text-muted);
+}
+
+.feature.disabled span {
+    color: var(--text-muted);
+}
+
+.pricing-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: 2px solid var(--border-medium);
+    border-radius: var(--radius-lg);
+    background: transparent;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.pricing-btn:hover {
+    background: var(--bg-secondary);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.pricing-btn.primary {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.pricing-btn.primary:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.pricing-guarantee {
+    text-align: center;
+}
+
+.guarantee-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+}
+
+.guarantee-card i {
+    font-size: 2rem;
+    color: var(--accent-color);
+}
+
+.guarantee-content h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.guarantee-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* Auth Section */
+.auth-section {
+    padding: 6rem 0;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.auth-content {
+    margin-bottom: 2rem;
+}
+
+.auth-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.auth-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.auth-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.benefit-item i {
+    color: var(--accent-color);
+    width: 20px;
+}
+
+.auth-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-xl);
+}
+
+.auth-toggle {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: 4px;
+}
+
+.auth-toggle-btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.auth-toggle-btn.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.auth-form {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.auth-submit-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.25rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.auth-submit-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-stats {
+        gap: 1rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .landing-hero {
+        padding: 6rem 0 2rem;
+        min-height: auto;
+    }
+    
+    .hero-title {
+    .landing-hero {
+        padding: 6rem 0 2rem;
+        min-height: auto;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .hero-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-primary-large,
+    .btn-secondary-large {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+    
+    .navbar-actions {
+        display: none;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .companies-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pricing-card.popular {
+        transform: none;
+    }
+    
+    .pricing-card.popular:hover {
+        transform: translateY(-8px);
+    }
+    
+    .auth-title {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .auth-subtitle {
+        text-align: center;
+    }
+    
+    .auth-benefits {
+        align-items: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .hero-stats .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .floating-card-1,
+    .floating-card-2 {
+        display: none;
+    }
+    
+    .feature-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .pricing-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .auth-container {
+        padding: 2rem 1.5rem;
+    }
+    
+    .auth-title {
+        font-size: 1.75rem;
+    }
+    
+    .guarantee-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .landing-page {
+        background: white !important;
+    }
+    
+    .floating-elements,
+    .floating-card-1,
+    .floating-card-2 {
+        display: none !important;
+    }
+    
+    .testimonial-card,
+    .feature-card,
+    .pricing-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        background: white !important;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus styles for keyboard navigation */
+.nav-link:focus,
+.nav-link-cta:focus,
+.auth-toggle-btn:focus,
+.form-control:focus,
+.auth-submit-btn:focus,
+.pricing-btn:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --border-light: rgba(0, 0, 0, 0.3);
+        --border-medium: rgba(0, 0, 0, 0.5);
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+    }
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auth form toggle functionality
+    const toggleButtons = document.querySelectorAll('.auth-toggle-btn');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const type = this.getAttribute('data-type');
+            
+            // Update active state
+            toggleButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show/hide forms with animation
+            if (type === 'login') {
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                loginForm.style.animation = 'fadeInUp 0.3s ease-out';
+            } else {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                signupForm.style.animation = 'fadeInUp 0.3s ease-out';
+            }
+        });
+    });
+    
+    // Pricing toggle functionality
+    const pricingToggle = document.getElementById('pricing-toggle');
+    const monthlyPrices = document.querySelectorAll('.monthly-price');
+    const yearlyPrices = document.querySelectorAll('.yearly-price');
+    
+    if (pricingToggle) {
+        pricingToggle.addEventListener('change', function() {
+            if (this.checked) {
+                // Show yearly prices
+                monthlyPrices.forEach(price => price.style.display = 'none');
+                yearlyPrices.forEach(price => price.style.display = 'inline');
+            } else {
+                // Show monthly prices
+                monthlyPrices.forEach(price => price.style.display = 'inline');
+                yearlyPrices.forEach(price => price.style.display = 'none');
+            }
+        });
+    }
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Add loading state to form submissions
+    const forms = document.querySelectorAll('.auth-form form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function() {
+            const submitBtn = this.querySelector('.auth-submit-btn');
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Processing...</span>';
+            submitBtn.disabled = true;
+            
+            // Re-enable button after 5 seconds (in case of error)
+            setTimeout(() => {
+                submitBtn.innerHTML = originalContent;
+                submitBtn.disabled = false;
+            }, 5000);
+        });
+    });
+    
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements for scroll animations
+    document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.querySelector('.landing-navbar');
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > 100) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = 'none';
+        }
+        
+        if (currentScrollY > lastScrollY && currentScrollY > 200) {
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            navbar.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollY = currentScrollY;
+    });
+});
+</script>
 {% endblock %}

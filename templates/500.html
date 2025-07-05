@@ -1,24 +1,184 @@
 {% extends "base.html" %}
-
-{% block title %}Server Error - JobChat Platform{% endblock %}
+{% block title %}Server Error - JobChunk.ai{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 text-center">
-            <div class="error-page">
-                <div class="error-code">500</div>
-                <div class="error-message">
-                    <h1>Internal Server Error</h1>
-                    <p class="lead">Something went wrong on our end. We're working to fix it.</p>
+<div class="error-page-container">
+    <div class="error-content">
+        <!-- Animated Illustration -->
+        <div class="error-illustration">
+            <div class="server-container">
+                <div class="server-rack">
+                    <div class="server-unit">
+                        <div class="server-lights">
+                            <div class="light red blinking"></div>
+                            <div class="light yellow"></div>
+                            <div class="light green"></div>
+                        </div>
+                        <div class="server-vents"></div>
+                    </div>
+                    <div class="server-unit">
+                        <div class="server-lights">
+                            <div class="light red"></div>
+                            <div class="light yellow blinking"></div>
+                            <div class="light green"></div>
+                        </div>
+                        <div class="server-vents"></div>
+                    </div>
                 </div>
-                <div class="error-actions">
-                    <a href="{{ url_for('chat') if session.user_id else url_for('landing') }}" class="btn btn-primary">
-                        <i class="fas fa-home me-2"></i>Go Home
+                <div class="error-sparks">
+                    <div class="spark spark-1"></div>
+                    <div class="spark spark-2"></div>
+                    <div class="spark spark-3"></div>
+                </div>
+                <div class="repair-tools">
+                    <i class="fas fa-wrench tool-1"></i>
+                    <i class="fas fa-screwdriver tool-2"></i>
+                    <i class="fas fa-hammer tool-3"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Information -->
+        <div class="error-info">
+            <div class="error-code">500</div>
+            <h1 class="error-title">Server Having a Moment</h1>
+            <p class="error-description">
+                Our digital hamsters are taking a coffee break! Don't worry, 
+                our tech wizards are already casting their debugging spells.
+            </p>
+            
+            <!-- Status Updates -->
+            <div class="status-section">
+                <div class="status-card">
+                    <div class="status-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="status-content">
+                        <h4>We're On It!</h4>
+                        <p>Our team has been automatically notified and is working on a fix.</p>
+                    </div>
+                    <div class="status-indicator">
+                        <div class="pulse-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="error-actions">
+            <a href="{{ url_for('chat') if session.user_id else url_for('landing') }}" class="action-btn primary-btn">
+                <div class="btn-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="btn-content">
+                    <span class="btn-title">Safe Harbor</span>
+                    <span class="btn-subtitle">Return to homepage</span>
+                </div>
+            </a>
+            
+            <button onclick="location.reload()" class="action-btn secondary-btn">
+                <div class="btn-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <div class="btn-content">
+                    <span class="btn-title">Try Again</span>
+                    <span class="btn-subtitle">Maybe it's fixed now?</span>
+                </div>
+            </button>
+        </div>
+
+        <!-- What You Can Do Section -->
+        <div class="help-section">
+            <h3 class="help-title">While We Fix This...</h3>
+            <div class="help-grid">
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="help-content">
+                        <h4>Wait a Moment</h4>
+                        <p>Most issues resolve themselves within a few minutes. Grab a coffee!</p>
+                    </div>
+                </div>
+                
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-refresh"></i>
+                    </div>
+                    <div class="help-content">
+                        <h4>Refresh the Page</h4>
+                        <p>Sometimes a simple refresh does the trick. Give it a shot!</p>
+                    </div>
+                </div>
+                
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="help-content">
+                        <h4>Try Another Path</h4>
+                        <p>Navigate to a different section while we sort this out.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="quick-links">
+            <h3 class="links-title">Quick Escape Routes</h3>
+            <div class="links-grid">
+                {% if session.user_id %}
+                <a href="{{ url_for('jobs') }}" class="quick-link">
+                    <div class="link-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <span>Browse Jobs</span>
+                </a>
+                
+                <a href="{{ url_for('profile') }}" class="quick-link">
+                    <div class="link-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span>Your Profile</span>
+                </a>
+                
+                <a href="{{ url_for('chat') }}" class="quick-link">
+                    <div class="link-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <span>AI Assistant</span>
+                </a>
+                {% else %}
+                <a href="{{ url_for('landing') }}" class="quick-link">
+                    <div class="link-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <span>Get Started</span>
+                </a>
+                
+                <a href="#" class="quick-link" onclick="alert('Please sign in to access this feature')">
+                    <div class="link-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </div>
+                    <span>Sign In</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Support Section -->
+        <div class="support-section">
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-life-ring"></i>
+                </div>
+                <div class="support-content">
+                    <h4>Still Stuck?</h4>
+                    <p>If the problem persists, our support team is here to help you out.</p>
+                    <a href="mailto:support@jobchunk.ai" class="support-btn">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact Support</span>
                     </a>
-                    <button onclick="location.reload()" class="btn btn-outline-primary">
-                        <i class="fas fa-sync me-2"></i>Try Again
-                    </button>
                 </div>
             </div>
         </div>
@@ -26,47 +186,694 @@
 </div>
 
 <style>
-.error-page {
-    padding: 60px 0;
+/* ===== INTUITIVE 500 PAGE STYLES ===== */
+:root {
+    --primary-color: #000000;
+    --secondary-color: #404040;
+    --accent-color: #22c55e;
+    --error-color: #ef4444;
+    --warning-color: #f59e0b;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-quaternary: #e2e8f0;
+    --border-light: rgba(0, 0, 0, 0.06);
+    --border-medium: rgba(0, 0, 0, 0.12);
+    --text-primary: #000000;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.error-page-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-content {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+/* ===== ANIMATED SERVER ILLUSTRATION ===== */
+.error-illustration {
+    margin-bottom: 3rem;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.server-container {
+    position: relative;
+    animation: shake 0.5s ease-in-out infinite alternate;
+}
+
+.server-rack {
+    background: var(--secondary-color);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+}
+
+.server-unit {
+    background: var(--primary-color);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.server-unit:last-child {
+    margin-bottom: 0;
+}
+
+.server-lights {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.light {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.light.red {
+    background: var(--error-color);
+}
+
+.light.yellow {
+    background: var(--warning-color);
+}
+
+.light.green {
+    background: var(--accent-color);
+}
+
+.light.blinking {
+    animation: blink 1s ease-in-out infinite;
+}
+
+.server-vents {
+    width: 40px;
+    height: 6px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--bg-secondary) 0px,
+        var(--bg-secondary) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    border-radius: 3px;
+}
+
+.error-sparks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--warning-color);
+    border-radius: 50%;
+    animation: spark 2s ease-in-out infinite;
+}
+
+.spark-1 {
+    top: 20%;
+    left: 80%;
+    animation-delay: 0s;
+}
+
+.spark-2 {
+    top: 60%;
+    right: 85%;
+    animation-delay: 0.7s;
+}
+
+.spark-3 {
+    bottom: 30%;
+    left: 75%;
+    animation-delay: 1.4s;
+}
+
+.repair-tools {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.repair-tools i {
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    opacity: 0.6;
+    animation: float-tool 3s ease-in-out infinite;
+}
+
+.tool-1 {
+    animation-delay: 0s;
+}
+
+.tool-2 {
+    animation-delay: 1s;
+}
+
+.tool-3 {
+    animation-delay: 2s;
+}
+
+/* ===== ERROR INFORMATION ===== */
+.error-info {
+    margin-bottom: 3rem;
 }
 
 .error-code {
     font-size: 8rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--error-color), var(--warning-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     line-height: 1;
-    margin-bottom: 30px;
+    margin-bottom: 1rem;
+    animation: pulse-glow 2s ease-in-out infinite alternate;
 }
 
-.error-message h1 {
+.error-title {
     font-size: 2.5rem;
+    font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
 }
 
-.error-message .lead {
+.error-description {
+    font-size: 1.125rem;
     color: var(--text-secondary);
-    font-size: 1.2rem;
-    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 2rem;
 }
 
-.error-actions .btn {
-    margin: 0 10px;
+/* ===== STATUS SECTION ===== */
+.status-section {
+    margin-bottom: 2rem;
 }
 
+.status-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-sm);
+}
+
+.status-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.status-content {
+    flex: 1;
+    text-align: left;
+}
+
+.status-content h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.status-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.status-indicator {
+    flex-shrink: 0;
+}
+
+.pulse-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.error-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: var(--transition);
+    cursor: pointer;
+    min-width: 180px;
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.primary-btn {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.primary-btn:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    color: white;
+    text-decoration: none;
+}
+
+.secondary-btn {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-medium);
+}
+
+.secondary-btn:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.secondary-btn .btn-icon {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.btn-content {
+    text-align: left;
+}
+
+.btn-title {
+    display: block;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.btn-subtitle {
+    display: block;
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+/* ===== HELP SECTION ===== */
+.help-section {
+    margin-bottom: 3rem;
+}
+
+.help-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+}
+
+.help-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.help-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.help-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-medium);
+}
+
+.help-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--bg-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.help-content h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.help-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+    font-size: 0.875rem;
+}
+
+/* ===== QUICK LINKS ===== */
+.quick-links {
+    margin-bottom: 3rem;
+}
+
+.links-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.links-grid {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.quick-link:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.link-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--primary-color);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.875rem;
+}
+
+/* ===== SUPPORT SECTION ===== */
+.support-section {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.support-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    text-align: center;
+}
+
+.support-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--error-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.support-content h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.support-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.support-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.875rem 1.5rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.support-btn:hover {
+    background: var(--bg-primary);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(2px);
+    }
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 0.7;
+    }
+    51%, 100% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes spark {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float-tool {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pulse-glow {
+    0% {
+        text-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+    }
+    100% {
+        text-shadow: 0 0 30px rgba(239, 68, 68, 0.4);
+    }
+}
+
+@keyframes pulse-dot {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
+    .error-page-container {
+        padding: 1rem;
+    }
+    
     .error-code {
         font-size: 6rem;
     }
     
-    .error-message h1 {
+    .error-title {
         font-size: 2rem;
     }
     
-    .error-actions .btn {
-        display: block;
-        margin: 10px 0;
-        width: 200px;
+    .error-description {
+        font-size: 1rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .action-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .help-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+    
+    .links-grid {
+        flex-direction: column;
+        align-items: center;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .quick-link {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .status-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .status-content {
+        text-align: center;
+    }
+    
+    .error-illustration {
+        height: 180px;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-code {
+        font-size: 4.5rem;
+    }
+    
+    .error-title {
+        font-size: 1.75rem;
+    }
+    
+    .help-title {
+        font-size: 1.25rem;
+    }
+    
+    .support-card {
+        padding: 1.5rem;
+    }
+    
+    .action-btn {
+        padding: 1rem;
+        min-width: auto;
+    }
+    
+    .btn-content {
+        text-align: center;
+    }
+    
+    .help-card {
+        padding: 1.25rem;
     }
 }
 </style>

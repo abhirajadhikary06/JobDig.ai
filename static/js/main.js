@@ -2,26 +2,78 @@
 let currentChatSession = null;
 let currentScrapeType = 'content';
 
-// Document ready
+// Initialize when DOM is ready
 $(document).ready(function() {
-    initializeApp();
+    initChatInterface();
+    initSidebarToggle();
+    initMessageInput();
 });
 
-function initializeApp() {
-    // Initialize auth toggle
-    initAuthToggle();
+// Sidebar toggle functionality
+function initSidebarToggle() {
+    const sidebar = $('#chat-sidebar');
+    const sidebarToggle = $('#sidebar-toggle');
+    const hiddenToggle = $('#sidebar-toggle-hidden');
+    const mobileSidebarToggle = $('#mobile-sidebar-toggle');
+    const overlay = $('#sidebar-overlay');
     
-    // Initialize chat functionality
-    initChatInterface();
+    // Desktop sidebar toggle
+    sidebarToggle.on('click', function() {
+        const isCollapsed = sidebar.hasClass('collapsed');
+        
+        if (isCollapsed) {
+            sidebar.removeClass('collapsed');
+            hiddenToggle.removeClass('show');
+            $(this).find('i').removeClass('fa-chevron-right').addClass('fa-chevron-left');
+        } else {
+            sidebar.addClass('collapsed');
+            hiddenToggle.addClass('show');
+            $(this).find('i').removeClass('fa-chevron-left').addClass('fa-chevron-right');
+        }
+    });
     
-    // Initialize profile functionality
-    initProfileFunctionality();
+    // Hidden toggle button
+    hiddenToggle.on('click', function() {
+        sidebar.removeClass('collapsed');
+        $(this).removeClass('show');
+        sidebarToggle.find('i').removeClass('fa-chevron-right').addClass('fa-chevron-left');
+    });
     
-    // Initialize jobs functionality
-    initJobsFunctionality();
+    // Mobile sidebar toggle
+    mobileSidebarToggle.on('click', function() {
+        sidebar.addClass('show');
+        overlay.addClass('show');
+    });
     
-    // Initialize tooltips
-    $('[data-toggle="tooltip"]').tooltip();
+    // Close mobile sidebar
+    overlay.on('click', function() {
+        sidebar.removeClass('show');
+        $(this).removeClass('show');
+    });
+}
+
+// Message input functionality
+function initMessageInput() {
+    const messageInput = $('#message-input');
+    
+    // Auto-resize textarea
+    messageInput.on('input', function() {
+        autoResizeTextarea(this);
+    });
+    
+    // Handle Enter key
+    messageInput.on('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            $('#send-message-form').submit();
+        }
+    });
+}
+
+// Auto-resize textarea function
+function autoResizeTextarea(textarea) {
+    textarea.style.height = 'auto';
+    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
 }
 
 // Authentication functionality
@@ -60,7 +112,16 @@ function initChatInterface() {
     // Chat session selection
     $('.chat-session-item').on('click', function() {
         const sessionId = $(this).data('session-id');
+        $('.chat-session-item').removeClass('active');
+        $(this).addClass('active');
         loadChatSession(sessionId);
+    });
+    
+    // Query suggestions
+    $('.query-btn').on('click', function() {
+        const query = $(this).data('query');
+        $('#message-input').val(query).focus();
+        autoResizeTextarea($('#message-input')[0]);
     });
 }
 
@@ -73,9 +134,9 @@ function startChatSession() {
     }
     
     const startButton = $('#start-chat-btn');
-    const originalText = startButton.text();
+    const originalHtml = startButton.html();
     
-    startButton.html('<span class="loading-spinner"></span> Scraping...').prop('disabled', true);
+    startButton.html('<span class="loading-spinner"></span>').prop('disabled', true);
     
     $.ajax({
         url: '/start_chat',
@@ -91,6 +152,7 @@ function startChatSession() {
                 showAlert(response.message, 'success');
                 $('#chat-interface').show();
                 $('#start-chat-section').hide();
+                $('#chat-session-url').text(websiteUrl);
                 loadChatSession(response.session_id);
             } else {
                 showAlert(response.error || 'Failed to start chat session', 'error');
@@ -101,7 +163,7 @@ function startChatSession() {
             showAlert(error, 'error');
         },
         complete: function() {
-            startButton.text(originalText).prop('disabled', false);
+            startButton.html(originalHtml).prop('disabled', false);
         }
     });
 }
@@ -114,11 +176,12 @@ function sendMessage() {
     }
     
     const sendButton = $('#send-message-btn');
-    const originalText = sendButton.text();
+    const originalHtml = sendButton.html();
     
     // Add user message to chat
     addMessageToChat('user', message);
     $('#message-input').val('');
+    autoResizeTextarea($('#message-input')[0]);
     
     sendButton.html('<span class="loading-spinner"></span>').prop('disabled', true);
     
@@ -142,7 +205,8 @@ function sendMessage() {
             showAlert(error, 'error');
         },
         complete: function() {
-            sendButton.text(originalText).prop('disabled', false);
+            // Fix: Restore the original HTML content instead of text
+            sendButton.html(originalHtml).prop('disabled', false);
         }
     });
 }
@@ -185,6 +249,19 @@ function addMessageToChat(type, content) {
 function scrollToBottom() {
     const chatMessages = $('#chat-messages');
     chatMessages.scrollTop(chatMessages[0].scrollHeight);
+}
+
+// Show alert function (implement based on your alert system)
+function showAlert(message, type) {
+    // You can implement your preferred alert/notification system here
+    console.log(`${type.toUpperCase()}: ${message}`);
+    
+    // Simple alert for now - replace with your notification system
+    if (type === 'error') {
+        alert('Error: ' + message);
+    } else {
+        console.log('Success: ' + message);
+    }
 }
 
 // Profile functionality
@@ -380,7 +457,7 @@ function showAlert(message, type) {
     // Auto-dismiss after 5 seconds
     setTimeout(() => {
         $('.alert').alert('close');
-    }, 5000);
+    }, 2000);
 }
 
 function formatSkillsForDisplay(skills) {
