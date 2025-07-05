@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}JobChunk.ai - AI-Powered Job Search Platform{% endblock %}
+{% block title %}JobDig.ai - AI-Powered Job Search Platform{% endblock %}
 
 {% block navbar %}
 <!-- Custom navbar for landing page -->
@@ -8,14 +8,15 @@
         <a class="navbar-brand" href="{{ url_for('landing') }}">
             <div class="brand-container" style="display: flex; align-items: center; gap: 0.75rem;">
                 <div class="brand-logo" style="position: relative;">
-                    <i class="fas fa-robot"></i>
+                    <img src="{{ url_for('static', filename='assets/logo3.png') }}" alt="JobDig.ai Logo" style="width: 32px; height: 32px; object-fit: contain;" />
                     <div class="logo-pulse"></div>
                 </div>
-                <span class="brand-name" style="font-weight: 700; font-size: 1.5rem; color: #000;">JobChunk<span class="brand-suffix" style="color: #22c55e;">.ai</span></span>
+                <span class="brand-name" style="font-weight: 700; font-size: 1.5rem; color: #000;">JobDig<span class="brand-suffix" style="color: #22c55e;">.ai</span></span>
             </div>
         </a>
         
         <div class="navbar-actions">
+            <a href="#how-it-works" class="nav-link">How it Works</a>
             <a href="#features" class="nav-link">Features</a>
             <a href="#testimonials" class="nav-link">Reviews</a>
             <a href="#pricing" class="nav-link">Pricing</a>
@@ -34,7 +35,7 @@
                 <i class="fas fa-briefcase"></i>
             </div>
             <div class="floating-element">
-                <i class="fas fa-robot"></i>
+                <img src="{{ url_for('static', filename='assets/logo3.png') }}" alt="JobDig.ai Logo" style="width: 32px; height: 32px; object-fit: contain;" />
             </div>
             <div class="floating-element">
                 <i class="fas fa-chart-line"></i>
@@ -71,7 +72,7 @@
                                 <span>Start Your Job Search</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
-                            <a href="#features" class="btn-secondary-large">
+                            <a href="#demo-video" class="btn-secondary-large">
                                 <i class="fas fa-play"></i>
                                 <span>Watch Demo</span>
                             </a>
@@ -84,16 +85,16 @@
                         <div class="hero-card main-card">
                             <div class="card-header">
                                 <div class="card-icon">
-                                    <i class="fas fa-robot"></i>
+                                    <img src="{{ url_for('static', filename='assets/logo3.png') }}" alt="JobDig.ai Logo" style="width: 32px; height: 32px; object-fit: contain;" />
                                 </div>
                                 <div class="card-title">AI Job Assistant</div>
                             </div>
                             <div class="card-content">
                                 <div class="chat-bubble">
-                                    <p>"Find me software engineer jobs at Google with 3+ years experience"</p>
+                                    <p>"How can I crack this Data Engineer role at American Express"</p>
                                 </div>
                                 <div class="chat-response">
-                                    <p>Found 12 matching positions! Here are the top 3 with salary ranges and requirements...</p>
+                                    <p>Let me take you through the requirements of this job...</p>
                                 </div>
                             </div>
                         </div>
@@ -111,6 +112,147 @@
                                 <span>98% Match Rate</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How JobDig.ai Works</h2>
+                <p class="section-subtitle">Transform your job search in just 3 simple steps</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">
+                        <span>1</span>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3 class="step-title">Paste Job URL</h3>
+                        <p class="step-description">
+                            Simply paste any job posting URL from LinkedIn, Indeed, Naukri, or company websites. 
+                            Our AI instantly scrapes and analyzes the job details.
+                        </p>
+                        <div class="step-example">
+                            <div class="example-url">
+                                <i class="fas fa-globe"></i>
+                                <span>linkedin.com/jobs/view/123456789</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">
+                        <span>2</span>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="step-title">Chat with AI</h3>
+                        <p class="step-description">
+                            Ask our AI anything about the job - requirements, salary expectations, company culture, 
+                            interview tips, or how to tailor your resume.
+                        </p>
+                        <div class="step-example">
+                            <div class="chat-preview">
+                                <div class="chat-message user">
+                                    "What skills do I need for this role?"
+                                </div>
+                                <div class="chat-message ai">
+                                    "Based on the job posting, you'll need Python, SQL, and AWS experience..."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">
+                        <span>3</span>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="step-title">Land Your Dream Job</h3>
+                        <p class="step-description">
+                            Get personalized insights, application strategies, and interview preparation. 
+                            Apply with confidence and increase your chances of success.
+                        </p>
+                        <div class="step-example">
+                            <div class="success-metrics">
+                                <div class="metric">
+                                    <span class="metric-number">3x</span>
+                                    <span class="metric-label">Higher Response Rate</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-number">85%</span>
+                                    <span class="metric-label">Interview Success</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section class="demo-video-section" id="demo-video">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">See JobDig.ai in Action</h2>
+                <p class="section-subtitle">Watch how our AI transforms job searching in under 2 minutes</p>
+            </div>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <div class="video-placeholder" id="video-placeholder">
+                        <div class="play-button" onclick="loadVideo()">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-overlay">
+                            <h3>JobDig.ai Demo</h3>
+                            <p>See how to find and analyze your dream job in minutes</p>
+                        </div>
+                        <img src="{{ url_for('static', filename='assets/logo3.png') }}" alt="Video Thumbnail" class="video-thumbnail" />
+                    </div>
+                    <iframe 
+                        id="demo-video-frame" 
+                        style="display: none;"
+                        width="100%" 
+                        height="100%" 
+                        src="" 
+                        title="JobDig.ai Demo Video" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div class="video-features">
+                    <div class="feature-highlight">
+                        <i class="fas fa-clock"></i>
+                        <span>2 min demo</span>
+                    </div>
+                    <div class="feature-highlight">
+                        <i class="fas fa-eye"></i>
+                        <span>Real job analysis</span>
+                    </div>
+                    <div class="feature-highlight">
+                        <i class="fas fa-brain"></i>
+                        <span>AI insights</span>
                     </div>
                 </div>
             </div>
@@ -141,7 +283,7 @@
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
+                        <i class="fa-solid fa-robot"></i>
                     </div>
                     <h3>AI-Powered Chat</h3>
                     <p>Chat with scraped job data using Gemini AI to get instant insights about requirements, salary expectations, and application strategies.</p>
@@ -278,35 +420,35 @@
                 <h3 class="institutions-title">From Top Institutions</h3>
                 <div class="institutions-grid">
                 <div class="company-logo">
-                    <img src="{{ url_for('static', filename='images/iit_delhi.jpg') }}" alt="Spotify" />
+                    <img src="{{ url_for('static', filename='images/iit_delhi.jpg') }}" alt="IIT Delhi" />
                     <span>IIT Delhi</span>
                 </div>
                 <div class="company-logo">
-                    <img src="{{ url_for('static', filename='images/iit_bombay.jpg') }}" alt="Spotify" />
+                    <img src="{{ url_for('static', filename='images/iit_bombay.jpg') }}" alt="IIT Bombay" />
                     <span>IIT Bombay</span>
                 </div>
                 <div class="company-logo">
-                    <img src="{{ url_for('static', filename='images/iim_ahmedabad.jpg') }}" alt="Spotify" />
+                    <img src="{{ url_for('static', filename='images/iim_ahmedabad.jpg') }}" alt="IIM Ahmedabad" />
                     <span>IIM Ahmedabad</span>
                 </div>
                 <div class="company-logo">
-                    <img src="{{ url_for('static', filename='images/bits_pilani.jpg') }}" alt="Spotify" />
+                    <img src="{{ url_for('static', filename='images/bits_pilani.jpg') }}" alt="BITS Pilani" />
                     <span>Bits Pilani</span>
                 </div>
                 <div class="company-logo">
-                    <img src="{{ url_for('static', filename='images/nit_tirchy.jpg') }}" alt="Spotify" />
+                    <img src="{{ url_for('static', filename='images/nit_tirchy.jpg') }}" alt="NIT Trichy" />
                     <span>NIT Tirchy</span>
                 </div>
                 <div class="company-logo">
-                    <img src="{{ url_for('static', filename='images/iiit_hyderabad.png') }}" alt="Spotify" />
+                    <img src="{{ url_for('static', filename='images/iiit_hyderabad.png') }}" alt="IIIT Hyderabad" />
                     <span>IIIT Hyderabad</span>
                 </div>
                 <div class="company-logo">
-                    <img src="{{ url_for('static', filename='images/isb_hyderabad.jpg') }}" alt="Spotify" />
+                    <img src="{{ url_for('static', filename='images/isb_hyderabad.jpg') }}" alt="ISB Hyderabad" />
                     <span>ISB Hyderabad</span>
                 </div>
                 <div class="company-logo">
-                    <img src="{{ url_for('static', filename='images/du.jpg') }}" alt="Spotify" />
+                    <img src="{{ url_for('static', filename='images/du.jpg') }}" alt="Delhi University" />
                     <span>Delhi University</span>
                 </div>
                 </div>
@@ -341,7 +483,7 @@
                         </div>
                     </div>
                     <div class="testimonial-content">
-                        <p>"JobChunk.ai helped me land my dream job at Google! The AI chat feature gave me insights I couldn't find anywhere else. Scraped 200+ job postings in minutes and found the perfect match. 🚀 #JobSearch #AI"</p>
+                        <p>"JobDig.ai helped me land my dream job at Google! The AI chat feature gave me insights I couldn't find anywhere else. Scraped 200+ job postings in minutes and found the perfect match. 🚀 #JobSearch #AI"</p>
                     </div>
                     <div class="testimonial-footer">
                         <div class="engagement">
@@ -399,7 +541,7 @@
                         </div>
                     </div>
                     <div class="testimonial-content">
-                        <p>"As a data scientist, I was skeptical about AI job tools. But JobChunk.ai blew my mind! 🤖 The resume matching algorithm is incredibly accurate. Found my Amazon role through their smart recommendations. Worth every rupee! 📊✨"</p>
+                        <p>"As a data scientist, I was skeptical about AI job tools. But JobDig.ai blew my mind! 🤖 The resume matching algorithm is incredibly accurate. Found my Amazon role through their smart recommendations. Worth every rupee! 📊✨"</p>
                     </div>
                     <div class="testimonial-footer">
                         <div class="engagement">
@@ -428,13 +570,13 @@
                         </div>
                     </div>
                     <div class="testimonial-content">
-                        <p>"Switched from manual job hunting to JobChunk.ai and saw immediate results! 🔥 The platform's ability to chat with job data is revolutionary. Asked about salary ranges, got instant answers. Landed Netflix role in 2 weeks! 🎬"</p>
+                        <p>"Switched from manual job hunting to JobDig.ai and saw immediate results! 🔥 The platform's ability to chat with job data is revolutionary. Asked about salary ranges, got instant answers. Landed Netflix role in 2 weeks! 🎬"</p>
                     </div>
                     <div class="testimonial-footer">
                         <div class="engagement">
                             <span><i class="fas fa-heart"></i> 445</span>
                             <span><i class="fas fa-retweet"></i> 167</span>
-                            <span><i class="fas fa-comment"></i> 89</span>
+                            <span class="fas fa-comment"></i> 89</span>
                         </div>
                     </div>
                 </div>
@@ -457,7 +599,7 @@
                         </div>
                     </div>
                     <div class="testimonial-content">
-                        <p>"The UI is so intuitive! 🎨 As a designer, I appreciate good UX, and JobChunk.ai nails it. The job scraping is lightning fast, and the AI chat feels like talking to a career counselor. Got my Uber role through their platform! 🚗"</p>
+                        <p>"The UI is so intuitive! 🎨 As a designer, I appreciate good UX, and JobDig.ai nails it. The job scraping is lightning fast, and the AI chat feels like talking to a career counselor. Got my Uber role through their platform! 🚗"</p>
                     </div>
                     <div class="testimonial-footer">
                         <div class="engagement">
@@ -514,25 +656,25 @@
                     <input type="checkbox" id="pricing-toggle">
                     <span class="toggle-slider"></span>
                 </label>
-                <span class="toggle-label">Yearly <span class="discount-badge">Save 20%</span></span>
+                <span class="toggle-label">Yearly <span class="discount-badge">Save 25%</span></span>
             </div>
             
-            <div class="pricing-grid">
+            <div class="pricing-grid-two">
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3 class="plan-name">Starter</h3>
+                        <h3 class="plan-name">Basic</h3>
                         <p class="plan-description">Perfect for casual job seekers</p>
                     </div>
                     <div class="pricing-price">
                         <span class="currency">₹</span>
-                        <span class="amount monthly-price">99</span>
-                        <span class="amount yearly-price" style="display: none;">79</span>
+                        <span class="amount monthly-price">199</span>
+                        <span class="amount yearly-price" style="display: none;">149</span>
                         <span class="period">/month</span>
                     </div>
                     <div class="pricing-features">
                         <div class="feature">
                             <i class="fas fa-check"></i>
-                            <span>50 job scrapes per month</span>
+                            <span>100 job scrapes per month</span>
                         </div>
                         <div class="feature">
                             <i class="fas fa-check"></i>
@@ -540,15 +682,27 @@
                         </div>
                         <div class="feature">
                             <i class="fas fa-check"></i>
-                            <span>5 resume matches</span>
+                            <span>10 resume matches</span>
                         </div>
                         <div class="feature">
                             <i class="fas fa-check"></i>
                             <span>Email notifications</span>
                         </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Job alerts</span>
+                        </div>
                         <div class="feature disabled">
                             <i class="fas fa-times"></i>
                             <span>Priority support</span>
+                        </div>
+                        <div class="feature disabled">
+                            <i class="fas fa-times"></i>
+                            <span>Advanced AI insights</span>
+                        </div>
+                        <div class="feature disabled">
+                            <i class="fas fa-times"></i>
+                            <span>Interview preparation</span>
                         </div>
                     </div>
                     <button class="pricing-btn">Get Started</button>
@@ -557,23 +711,23 @@
                 <div class="pricing-card popular">
                     <div class="popular-badge">Most Popular</div>
                     <div class="pricing-header">
-                        <h3 class="plan-name">Professional</h3>
-                        <p class="plan-description">Ideal for active job hunters</p>
+                        <h3 class="plan-name">Premium</h3>
+                        <p class="plan-description">Ideal for serious job hunters</p>
                     </div>
                     <div class="pricing-price">
                         <span class="currency">₹</span>
-                        <span class="amount monthly-price">299</span>
-                        <span class="amount yearly-price" style="display: none;">239</span>
+                        <span class="amount monthly-price">499</span>
+                        <span class="amount yearly-price" style="display: none;">374</span>
                         <span class="period">/month</span>
                     </div>
                     <div class="pricing-features">
                         <div class="feature">
                             <i class="fas fa-check"></i>
-                            <span>500 job scrapes per month</span>
+                            <span>Unlimited job scrapes</span>
                         </div>
                         <div class="feature">
                             <i class="fas fa-check"></i>
-                            <span>Advanced AI chat with insights</span>
+                            <span>Advanced AI chat with deep insights</span>
                         </div>
                         <div class="feature">
                             <i class="fas fa-check"></i>
@@ -585,46 +739,22 @@
                         </div>
                         <div class="feature">
                             <i class="fas fa-check"></i>
+                            <span>Smart job alerts with filtering</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
                             <span>Priority support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced AI insights & analytics</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Interview preparation & tips</span>
                         </div>
                     </div>
                     <button class="pricing-btn primary">Get Started</button>
-                </div>
-                
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3 class="plan-name">Enterprise</h3>
-                        <p class="plan-description">For teams and recruiters</p>
-                    </div>
-                    <div class="pricing-price">
-                        <span class="currency">₹</span>
-                        <span class="amount monthly-price">999</span>
-                        <span class="amount yearly-price" style="display: none;">799</span>
-                        <span class="period">/month</span>
-                    </div>
-                    <div class="pricing-features">
-                        <div class="feature">
-                            <i class="fas fa-check"></i>
-                            <span>Unlimited job scrapes</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-check"></i>
-                            <span>Custom AI training</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-check"></i>
-                            <span>Team collaboration tools</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-check"></i>
-                            <span>API access</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-check"></i>
-                            <span>Dedicated support</span>
-                        </div>
-                    </div>
-                    <button class="pricing-btn">Contact Sales</button>
                 </div>
             </div>
             
@@ -1011,7 +1141,7 @@
 .card-icon {
     width: 50px;
     height: 50px;
-    background: var(--primary-color);
+    background: none;
     border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
@@ -1069,6 +1199,285 @@
 }
 
 .mini-stat i {
+    color: var(--accent-color);
+}
+
+/* How It Works Section */
+.how-it-works-section {
+    padding: 6rem 0;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.steps-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.step-item {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.step-item:last-child {
+    margin-bottom: 0;
+}
+
+.step-number {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.step-number span {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-lg);
+}
+
+.step-connector {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--bg-quaternary));
+}
+
+.step-item:last-child .step-connector {
+    display: none;
+}
+
+.step-content {
+    flex: 1;
+    padding-top: 0.5rem;
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--accent-color);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.step-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.step-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.step-example {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+}
+
+.example-url {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Courier New', monospace;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+}
+
+.example-url i {
+    color: var(--accent-color);
+}
+
+.chat-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.chat-message {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-lg);
+    max-width: 80%;
+}
+
+.chat-message.user {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    align-self: flex-end;
+}
+
+.chat-message.ai {
+    background: var(--primary-color);
+    color: white;
+    align-self: flex-start;
+}
+
+.success-metrics {
+    display: flex;
+    gap: 2rem;
+}
+
+.metric {
+    text-align: center;
+}
+
+.metric-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    line-height: 1;
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Demo Video Section */
+.demo-video-section {
+    padding: 6rem 0;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.video-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-2xl);
+    margin-bottom: 2rem;
+}
+
+.video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.video-placeholder:hover {
+    transform: scale(1.02);
+}
+
+.play-button {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+    z-index: 3;
+    position: relative;
+}
+
+.play-button:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.video-overlay {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    color: var(--text-primary);
+    z-index: 2;
+}
+
+.video-overlay h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.video-overlay p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.1;
+}
+
+#demo-video-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.feature-highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.feature-highlight i {
     color: var(--accent-color);
 }
 
@@ -1435,11 +1844,12 @@ input:checked + .toggle-slider:before {
     transform: translateX(26px);
 }
 
-.pricing-grid {
+.pricing-grid-two {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
 }
 
 .pricing-card {
@@ -1523,6 +1933,7 @@ input:checked + .toggle-slider:before {
 
 .pricing-features {
     margin-bottom: 2rem;
+    text-align: left;
 }
 
 .feature {
@@ -1536,6 +1947,7 @@ input:checked + .toggle-slider:before {
 .feature i {
     width: 20px;
     color: var(--accent-color);
+    flex-shrink: 0;
 }
 
 .feature.disabled i {
@@ -1797,15 +2209,23 @@ input:checked + .toggle-slider:before {
     .testimonials-grid {
         grid-template-columns: 1fr;
     }
+    
+    .step-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .step-connector {
+        display: none;
+    }
+    
+    .pricing-grid-two {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
 }
 
 @media (max-width: 768px) {
-    .landing-hero {
-        padding: 6rem 0 2rem;
-        min-height: auto;
-    }
-    
-    .hero-title {
     .landing-hero {
         padding: 6rem 0 2rem;
         min-height: auto;
@@ -1851,10 +2271,6 @@ input:checked + .toggle-slider:before {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
     
-    .pricing-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .pricing-card.popular {
         transform: none;
     }
@@ -1874,6 +2290,23 @@ input:checked + .toggle-slider:before {
     
     .auth-benefits {
         align-items: center;
+    }
+    
+    .step-item {
+        gap: 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .step-title {
+        font-size: 1.5rem;
+    }
+    
+    .step-description {
+        font-size: 1rem;
+    }
+    
+    .video-features {
+        gap: 1rem;
     }
 }
 
@@ -1929,6 +2362,21 @@ input:checked + .toggle-slider:before {
         flex-direction: column;
         text-align: center;
         padding: 1.5rem;
+    }
+    
+    .step-number span {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .step-title {
+        font-size: 1.25rem;
+    }
+    
+    .video-features {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -1986,6 +2434,19 @@ input:checked + .toggle-slider:before {
 </style>
 
 <script>
+// YouTube video URL - Replace with your actual video URL
+const YOUTUBE_VIDEO_URL = "https://www.youtube.com/embed/dQw4w9WgXcQ"; // Replace with your video ID
+
+function loadVideo() {
+    const placeholder = document.getElementById('video-placeholder');
+    const iframe = document.getElementById('demo-video-frame');
+    
+    // Hide placeholder and show iframe
+    placeholder.style.display = 'none';
+    iframe.style.display = 'block';
+    iframe.src = YOUTUBE_VIDEO_URL + "?autoplay=1";
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Auth form toggle functionality
     const toggleButtons = document.querySelectorAll('.auth-toggle-btn');
@@ -2079,7 +2540,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observe elements for scroll animations
-    document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card').forEach(el => {
+    document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .step-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';

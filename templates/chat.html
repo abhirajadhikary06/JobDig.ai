@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Chat - JobChunk.ai{% endblock %}
+{% block title %}Chat - JobDig.ai{% endblock %}
 
 {% block content %}
 <div class="chat-app">
@@ -12,8 +12,8 @@
     <div class="chat-sidebar" id="chat-sidebar">
         <div class="sidebar-header">
             <div class="sidebar-brand">
-                <i class="fas fa-robot"></i>
-                <span>JobChunk.ai</span>
+                <img src="{{ url_for('static', filename='assets/logo3.png') }}" alt="JobDig.ai Logo" style="width: 32px; height: 32px; object-fit: contain;" />
+                <span>JobDig.ai</span>
             </div>
             <button class="sidebar-toggle-btn" id="sidebar-toggle">
                 <i class="fas fa-chevron-left"></i>
@@ -72,7 +72,7 @@
             <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle">
                 <i class="fas fa-bars"></i>
             </button>
-            <div class="mobile-title">JobChunk.ai</div>
+            <div class="mobile-title">JobDig.ai</div>
         </div>
 
         <!-- Start Chat Welcome Screen -->
@@ -80,9 +80,9 @@
             <div class="welcome-content">
                 <div class="welcome-logo">
                     <div class="logo-icon">
-                        <i class="fas fa-robot"></i>
+                        <img src="{{ url_for('static', filename='assets/logo3.png') }}" alt="JobDig.ai Logo" style="width: 60px; height: 60px; object-fit: contain;" />
                     </div>
-                    <h1>JobChunk.ai</h1>
+                    <h1>JobDig.ai</h1>
                     <p>Your AI-powered job analysis assistant</p>
                 </div>
 
@@ -127,6 +127,9 @@
                         </button>
                         <button class="query-btn" data-query="Tell me about the company culture and benefits">
                             "Tell me about the company culture and benefits"
+                        </button>
+                        <button class="query-btn" data-query="Tell me about the company culture and benefits">
+                            "Expected salary range for this role?"
                         </button>
                     </div>
                 </div>
@@ -477,13 +480,13 @@ body {
 .logo-icon {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: none;
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.5rem;
-  box-shadow: var(--shadow-lg);
+  box-shadow: none;
 }
 
 .logo-icon i {

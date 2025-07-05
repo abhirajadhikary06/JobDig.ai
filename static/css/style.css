@@ -74,12 +74,12 @@ body {
 .brand-logo {
   width: 36px;
   height: 36px;
-  background: var(--gradient-primary);
-  border-radius: var(--border-radius);
+  background: none;
+  border-radius: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
   transition: var(--transition);
 }
 
@@ -90,7 +90,7 @@ body {
 
 .modern-brand:hover .brand-logo {
   transform: rotate(-5deg) scale(1.05);
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
 }
 
 .brand-text {

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Profile - JobChunk.ai{% endblock %}
+{% block title %}Profile - JobDig.ai{% endblock %}
 
 {% block content %}
 <div class="profile-page">
@@ -7,7 +7,7 @@
         <!-- Compact Profile Header -->
         <div class="profile-header-compact">
             <div class="profile-avatar-section">
-                <img src="{{ url_for('serve_profile_image', filename=user.profile_image) }}" alt="Profile Avatar">
+                <img src="{{ url_for('serve_profile_image', filename=user.profile_image) }}" alt="Profile Avatar" class="profile-avatar-small">
                 <div class="avatar-status"></div>
             </div>
             <div class="profile-details-compact">
@@ -244,7 +244,7 @@
                                 </div>
                                 <div class="stat-item-compact">
                                     <div class="stat-icon-small">
-                                        <i class="fas fa-robot"></i>
+                                        <img src="{{ url_for('static', filename='assets/logo3.png') }}" alt="JobDig.ai Logo" style="width: 32px; height: 32px; object-fit: contain;" />
                                     </div>
                                     <div class="stat-info-compact">
                                         <span class="stat-number-small">{{ (skills|selectattr('source', 'equalto', 'resume')|list)|length }}</span>
@@ -309,10 +309,10 @@
 }
 
 .profile-avatar-small {
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border: 3px solid var(--primary-color);
+  border: 2px solid var(--primary-color);
   object-fit: cover;
   box-shadow: var(--shadow-sm);
 }
