@@ -269,24 +269,24 @@ def update_profile():
     if 'profile_image' in request.files:
         file = request.files['profile_image']
         if file and file.filename:
-            # Check if file is an image
             allowed_extensions = {'png', 'jpg', 'jpeg', 'gif'}
-            if '.' in file.filename and file.filename.rsplit('.', 1)[1].lower() in allowed_extensions:
+            ext = file.filename.rsplit('.', 1)[1].lower()
+            if ext in allowed_extensions:
                 filename = secure_filename(f"profile_{user_id}_{file.filename}")
                 
-                # Create profile images directory
+                # ✅ Full save path: uploads/profiles/
                 profile_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'profiles')
                 os.makedirs(profile_dir, exist_ok=True)
-                
+
                 file_path = os.path.join(profile_dir, filename)
                 file.save(file_path)
-                
-                # Save relative path in database
-                user.profile_image = f"uploads/profiles/{filename}"
+
+                # ✅ Save only the filename
+                user.profile_image = filename
             else:
-                flash('Please upload a valid image file (PNG, JPG, JPEG, GIF)', 'error')
+                flash('Invalid image format (PNG, JPG, JPEG, GIF)', 'error')
                 return redirect(url_for('profile'))
-    
+
     db.session.commit()
     flash('Profile updated successfully!', 'success')
     return redirect(url_for('profile'))
@@ -446,3 +446,7 @@ def not_found(error):
 def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
+
+@app.route('/uploads/profiles/<filename>')
+def serve_profile_image(filename):  # ✅ new unique name
+    return send_from_directory(os.path.join(app.config['UPLOAD_FOLDER'], 'profiles'), filename)
