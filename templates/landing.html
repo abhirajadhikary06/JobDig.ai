@@ -217,59 +217,59 @@
             
             <div class="companies-grid">
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Google" />
+                    <img src="{{ url_for('static', filename='images/google.jpg') }}"  alt="Google" />
                     <span>Google</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Microsoft" />
+                    <img src="{{ url_for('static', filename='images/microsoft.jpg') }}" alt="Microsoft" />
                     <span>Microsoft</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Amazon" />
+                    <img src="{{ url_for('static', filename='images/amazon.jpg') }}" alt="Amazon" />
                     <span>Amazon</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Meta" />
+                    <img src="{{ url_for('static', filename='images/meta.jpg') }}" alt="Meta" />
                     <span>Meta</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Apple" />
+                    <img src="{{ url_for('static', filename='images/apple.jpg') }}" alt="Apple" />
                     <span>Apple</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Netflix" />
+                    <img src="{{ url_for('static', filename='images/netflix.jpg') }}" alt="Netflix" />
                     <span>Netflix</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Uber" />
+                    <img src="{{ url_for('static', filename='images/uber.jpg') }}" alt="Uber" />
                     <span>Uber</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Airbnb" />
+                    <img src="{{ url_for('static', filename='images/airbnb.jpg') }}" alt="Airbnb" />
                     <span>Airbnb</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Salesforce" />
+                    <img src="{{ url_for('static', filename='images/salseforce.jpg') }}" alt="Salesforce" />
                     <span>Salesforce</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Adobe" />
+                    <img src="{{ url_for('static', filename='images/adobe.jpg') }}" alt="Adobe" />
                     <span>Adobe</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="IBM" />
+                    <img src="{{ url_for('static', filename='images/ibm.jpg') }}" alt="IBM" />
                     <span>IBM</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Oracle" />
+                    <img src="{{ url_for('static', filename='images/oracle.jpg') }}" alt="Oracle" />
                     <span>Oracle</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Tesla" />
+                    <img src="{{ url_for('static', filename='images/tesla.jpg') }}" alt="Tesla" />
                     <span>Tesla</span>
                 </div>
                 <div class="company-logo">
-                    <img src="/placeholder.svg?height=60&width=120" alt="Spotify" />
+                    <img src="{{ url_for('static', filename='images/spotify.jpg') }}" alt="Spotify" />
                     <span>Spotify</span>
                 </div>
             </div>
@@ -277,14 +277,38 @@
             <div class="institutions-section">
                 <h3 class="institutions-title">From Top Institutions</h3>
                 <div class="institutions-grid">
-                    <span class="institution">IIT Delhi</span>
-                    <span class="institution">IIT Bombay</span>
-                    <span class="institution">IIM Ahmedabad</span>
-                    <span class="institution">BITS Pilani</span>
-                    <span class="institution">NIT Trichy</span>
-                    <span class="institution">IIIT Hyderabad</span>
-                    <span class="institution">ISB Hyderabad</span>
-                    <span class="institution">Delhi University</span>
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/iit_delhi.jpg') }}" alt="Spotify" />
+                    <span>IIT Delhi</span>
+                </div>
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/iit_bombay.jpg') }}" alt="Spotify" />
+                    <span>IIT Bombay</span>
+                </div>
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/iim_ahmedabad.jpg') }}" alt="Spotify" />
+                    <span>IIM Ahmedabad</span>
+                </div>
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/bits_pilani.jpg') }}" alt="Spotify" />
+                    <span>Bits Pilani</span>
+                </div>
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/nit_tirchy.jpg') }}" alt="Spotify" />
+                    <span>NIT Tirchy</span>
+                </div>
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/iiit_hyderabad.png') }}" alt="Spotify" />
+                    <span>IIIT Hyderabad</span>
+                </div>
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/isb_hyderabad.jpg') }}" alt="Spotify" />
+                    <span>ISB Hyderabad</span>
+                </div>
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/du.jpg') }}" alt="Spotify" />
+                    <span>Delhi University</span>
+                </div>
                 </div>
             </div>
         </div>
@@ -302,7 +326,7 @@
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="user-avatar">
-                            <img src="/placeholder.svg?height=50&width=50" alt="Priya Sharma" />
+                            <img src="{{ url_for('static', filename='images/avatar_girl1.jpg') }}" alt="Priya Sharma">
                         </div>
                         <div class="user-info">
                             <h4 class="user-name">Priya Sharma</h4>
@@ -331,7 +355,7 @@
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="user-avatar">
-                            <img src="/placeholder.svg?height=50&width=50" alt="Rahul Gupta" />
+                            <img src="{{ url_for('static', filename='images/avatar_boy1.jpg') }}" alt="Rahul Gupta" />
                         </div>
                         <div class="user-info">
                             <h4 class="user-name">Rahul Gupta</h4>
@@ -360,7 +384,7 @@
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="user-avatar">
-                            <img src="/placeholder.svg?height=50&width=50" alt="Anita Desai" />
+                            <img src="{{ url_for('static', filename='images/avatar_girl2.jpg') }}" alt="Anita Desai" />
                         </div>
                         <div class="user-info">
                             <h4 class="user-name">Anita Desai</h4>
@@ -389,7 +413,7 @@
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="user-avatar">
-                            <img src="/placeholder.svg?height=50&width=50" alt="Vikram Singh" />
+                            <img src="{{ url_for('static', filename='images/avatar_boy2.jpg') }}" alt="Vikram Singh" />
                         </div>
                         <div class="user-info">
                             <h4 class="user-name">Vikram Singh</h4>
@@ -418,7 +442,7 @@
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="user-avatar">
-                            <img src="/placeholder.svg?height=50&width=50" alt="Sneha Patel" />
+                            <img src="{{ url_for('static', filename='images/avatar_girl3.jpg') }}" alt="Sneha Patel" />
                         </div>
                         <div class="user-info">
                             <h4 class="user-name">Sneha Patel</h4>
@@ -447,7 +471,7 @@
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="user-avatar">
-                            <img src="/placeholder.svg?height=50&width=50" alt="Arjun Mehta" />
+                            <img src="{{ url_for('static', filename='images/avatar_boy3.jpg') }}" alt="Arjun Mehta" />
                         </div>
                         <div class="user-info">
                             <h4 class="user-name">Arjun Mehta</h4>
