@@ -7,8 +7,7 @@
         <!-- Compact Profile Header -->
         <div class="profile-header-compact">
             <div class="profile-avatar-section">
-                <img src="{{ url_for('uploaded_file', filename=user.profile_image) if user.profile_image else 'https://via.placeholder.com/70x70/000000/ffffff?text=' + (user.name[0] if user.name else user.username[0]) }}"
-                     alt="Profile Avatar" class="profile-avatar-small">
+                <img src="{{ url_for('serve_profile_image', filename=user.profile_image) }}" alt="Profile Avatar">
                 <div class="avatar-status"></div>
             </div>
             <div class="profile-details-compact">
