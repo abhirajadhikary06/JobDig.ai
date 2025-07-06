@@ -14,3 +14,6 @@ sqlalchemy>=2.0.41
 trafilatura>=2.0.0
 werkzeug
 exa-py==1.0.2
+serpapi
+beautifulsoup4>=4.12.2
+exa-py

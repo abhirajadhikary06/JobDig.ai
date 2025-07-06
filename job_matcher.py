@@ -1,44 +1,23 @@
 import logging
 from gemini_client import GeminiClient
-import os
-from exa_py import Exa
 
 class JobMatcher:
     def __init__(self):
         self.gemini_client = GeminiClient()
-        self.exa_api_key = os.getenv("EXA_API_KEY")
-        self.exa_client = Exa(api_key=self.exa_api_key) if self.exa_api_key else None
-
+    
     def find_jobs_for_skills(self, skills, location="remote"):
         """
-        Find actual job opportunities over the internet not dummy job based on user skills
+        Find job opportunities based on user skills
+        
         Args:
             skills (list): List of user skills
             location (str): Preferred location
+        
         Returns:
             list: List of job opportunities
         """
         try:
-            gemini_jobs = self.gemini_client.find_job_opportunities(skills, location)
-            exa_jobs = []
-            if self.exa_client:
-                # Build a query string from skills and location
-                query = f"{' '.join(skills)} jobs {location}"
-                result = self.exa_client.search_and_contents(query, text=True)
-                # Parse Exa results for job links and titles
-                for item in result.get('results', []):
-                    url = item.get('url')
-                    title = item.get('title')
-                    snippet = item.get('text') or item.get('snippet')
-                    if url and title:
-                        exa_jobs.append({
-                            'title': title,
-                            'url': url,
-                            'snippet': snippet
-                        })
-            # Combine and deduplicate jobs by URL
-            all_jobs = {job['url']: job for job in gemini_jobs + exa_jobs if 'url' in job}
-            return list(all_jobs.values())
+            return self.gemini_client.find_job_opportunities(skills, location)
         except Exception as e:
             logging.error(f"Error finding jobs: {str(e)}")
             return []
