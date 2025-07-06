@@ -160,9 +160,13 @@ def send_message():
         )
         db.session.add(user_message)
         
+        # Get user skills
+        user_skills_obj = Skill.query.filter_by(user_id=session['user_id']).all()
+        user_skills = [skill.to_dict() for skill in user_skills_obj]
+
         # Get AI response
         context = f"Website URL: {chat_session.website_url}\nScraped Data ({chat_session.scrape_type}):\n{chat_session.scraped_data}"
-        ai_response = gemini_client.chat_with_context(message_content, context)
+        ai_response = gemini_client.chat_with_context(message_content, context, user_skills=user_skills)
         
         # Parse AI response for better formatting
         formatted_response = parse_llm_response(ai_response)

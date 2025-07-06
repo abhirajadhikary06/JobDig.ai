@@ -9,27 +9,43 @@ class GeminiClient:
         self.client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
         self.model = "gemini-2.5-flash"
     
-    def chat_with_context(self, message, context):
+    def chat_with_context(self, message, context, user_skills=None):
         """
         Chat with Gemini AI using provided context
         
         Args:
             message (str): User message
             context (str): Context from scraped website
+            user_skills (list, optional): List of user skills (as dicts). Defaults to None.
         
         Returns:
             str: AI response
         """
         try:
-            system_prompt = f"""You are a helpful assistant specializing in job-related content analysis. 
+            skills_prompt_section = ""
+            if user_skills:
+                skills_str = "\n".join([
+                    f"- {s.get('skill_name', s)} (Level: {s.get('skill_level', 'Not specified')})" 
+                    if isinstance(s, dict) else f"- {s}" 
+                    for s in user_skills
+                ])
+                skills_prompt_section = f"""
+
+The user has the following skills:
+{skills_str}
+
+If the user asks for a skill analysis, compatibility check, or how they match up against the job description in the context, please provide a detailed analysis. Compare their skills with the job requirements from the context and give them feedback on their strengths, weaknesses, and suggestions for improvement.
+"""
+
+            system_prompt = f"""You are JobDig.ai a helpful assistant specializing in job-related content analysis. 
             Use the following context to answer questions accurately and helpfully:
 
             Context:
             {context}
-
+            {skills_prompt_section}
             Instructions:
             - Provide detailed and accurate answers based on the context
-            - If information is not available in the context, say so clearly
+            - Understand the context and answer from your own LLM power
             - Format your response in a clear, readable manner
             - For job-related queries, be specific about dates, requirements, and application processes
             """
