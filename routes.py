@@ -449,7 +449,7 @@ def internal_error(error):
     return render_template('500.html'), 500
 
 app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['DEFAULT_DP'] = 'default_dp.png'
+app.config['DEFAULT_DP'] = 'default_dp.jpg'
 
 @app.route('/uploads/profiles/<filename>')
 def serve_profile_image(filename):
