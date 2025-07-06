@@ -7,7 +7,7 @@ class JobMatcher:
     
     def find_jobs_for_skills(self, skills, location="remote"):
         """
-        Find job opportunities based on user skills
+        Find actual, current job opportunities based on user skills
         
         Args:
             skills (list): List of user skills

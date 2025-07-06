@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block title %}Chat - JobDig.ai{% endblock %}
-
 {% block content %}
 <div class="chat-app">
     <!-- Sidebar Toggle Button (Hidden State) -->
@@ -19,20 +18,18 @@
                 <i class="fas fa-chevron-left"></i>
             </button>
         </div>
-
         <div class="sidebar-content">
             <!-- New Chat Button -->
             <button class="new-chat-btn" onclick="location.reload()">
                 <i class="fas fa-plus"></i>
                 <span>New Chat</span>
             </button>
-
             <!-- Chat Sessions -->
             <div class="chat-sessions-list">
                 <div class="sessions-header">
                     <h6>Recent Chats</h6>
                 </div>
-                
+                                
                 <div class="chat-sessions-container" id="sessions-container">
                     {% if chat_sessions %}
                         {% for session in chat_sessions %}
@@ -85,14 +82,13 @@
                     <h1>JobDig.ai</h1>
                     <p>Your AI-powered job analysis assistant</p>
                 </div>
-
                 <div class="start-form-container">
                     <form id="start-chat-form" class="start-form">
                         <div class="url-input-group">
                             <div class="input-container">
-                                <input type="url" 
-                                       id="website-url" 
-                                       class="url-input"
+                                <input type="url"
+                                        id="website-url"
+                                        class="url-input"
                                        placeholder="Enter job posting URL to analyze..."
                                        required
                                        aria-label="Job website URL">
@@ -115,7 +111,6 @@
                         </div>
                     </form>
                 </div>
-
                 <div class="example-queries">
                     <p class="queries-title">Try asking:</p>
                     <div class="query-suggestions">
@@ -128,7 +123,7 @@
                         <button class="query-btn" data-query="Tell me about the company culture and benefits">
                             "Tell me about the company culture and benefits"
                         </button>
-                        <button class="query-btn" data-query="Tell me about the company culture and benefits">
+                        <button class="query-btn" data-query="Expected salary range for this role?">
                             "Expected salary range for this role?"
                         </button>
                     </div>
@@ -144,10 +139,27 @@
                     <h3 id="chat-session-title">Chat Session</h3>
                     <p id="chat-session-url" class="chat-url"></p>
                 </div>
-                <div class="chat-header-actions">
-                    <button class="header-action-btn" onclick="location.reload()" title="New Chat">
-                        <i class="fas fa-plus"></i>
+                <!-- LLM Dropdown -->
+                <div class="llm-dropdown-container">
+                    <button class="llm-dropdown-trigger" id="llm-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                        <span class="llm-provider">Groq</span>
+                        <span class="llm-model" id="selected-llm">gemma2-9b-it</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </button>
+                    <div class="llm-dropdown-menu" id="llm-dropdown-menu" role="menu">
+                        <div class="llm-dropdown-item" data-model="gemma2-9b-it" role="menuitem">
+                            <span class="model-name">gemma2-9b-it</span>
+                        </div>
+                        <div class="llm-dropdown-item" data-model="llama-3.1-8b-instant" role="menuitem">
+                            <span class="model-name">llama-3.1-8b-instant</span>
+                        </div>
+                        <div class="llm-dropdown-item" data-model="llama-3.3-70b-versatile" role="menuitem">
+                            <span class="model-name">llama-3.3-70b-versatile</span>
+                        </div>
+                        <div class="llm-dropdown-item" data-model="meta-llama/llama-guard-4-12b" role="menuitem">
+                            <span class="model-name">meta-llama/llama-guard-4-12b</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -160,8 +172,8 @@
             <div class="chat-input-area">
                 <form id="send-message-form" class="message-form">
                     <div class="input-wrapper">
-                        <textarea id="message-input" 
-                                  class="message-input"
+                        <textarea id="message-input"
+                                   class="message-input"
                                   placeholder="Ask something about the job posting..."
                                   rows="1"
                                   aria-label="Type your message"
@@ -674,24 +686,109 @@ body {
   max-width: 400px;
 }
 
-.chat-header-actions {
+/* ===== LLM DROPDOWN ===== */
+.llm-dropdown-container {
+  position: relative;
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
 }
 
-.header-action-btn {
+.llm-dropdown-trigger {
   background: var(--bg-secondary);
   border: 1px solid var(--border-light);
-  color: var(--text-secondary);
-  padding: 0.5rem;
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 200px;
+  font-size: 0.875rem;
 }
 
-.header-action-btn:hover {
+.llm-dropdown-trigger:hover {
   background: var(--bg-tertiary);
+  border-color: var(--border-medium);
+}
+
+.llm-dropdown-trigger[aria-expanded="true"] {
+  background: var(--bg-tertiary);
+  border-color: var(--primary-color);
+}
+
+.llm-provider {
+  font-weight: 600;
   color: var(--text-primary);
+}
+
+.llm-model {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  flex: 1;
+  text-align: left;
+}
+
+.dropdown-arrow {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  transition: var(--transition);
+}
+
+.llm-dropdown-trigger[aria-expanded="true"] .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.llm-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  min-width: 220px;
+  max-height: 300px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: var(--transition);
+  margin-top: 0.5rem;
+}
+
+.llm-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.llm-dropdown-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.llm-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.llm-dropdown-item:hover {
+  background: var(--bg-secondary);
+}
+
+.llm-dropdown-item.selected {
+  background: var(--primary-color);
+  color: white;
+}
+
+.model-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: block;
 }
 
 /* ===== MESSAGES CONTAINER ===== */
@@ -935,6 +1032,15 @@ body {
   .chat-url {
     max-width: 200px;
   }
+
+  .llm-dropdown-trigger {
+    min-width: 160px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .llm-dropdown-menu {
+    min-width: 180px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -969,6 +1075,15 @@ body {
   .input-wrapper {
     padding: 0.5rem 0.75rem;
   }
+
+  .llm-dropdown-trigger {
+    min-width: 140px;
+    font-size: 0.8125rem;
+  }
+
+  .llm-dropdown-menu {
+    min-width: 160px;
+  }
 }
 
 /* ===== SIDEBAR OVERLAY ===== */
@@ -987,4 +1102,78 @@ body {
   display: block;
 }
 </style>
+
+<script>
+// LLM Dropdown functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownTrigger = document.getElementById('llm-dropdown-trigger');
+    const dropdownMenu = document.getElementById('llm-dropdown-menu');
+    const selectedLlmSpan = document.getElementById('selected-llm');
+    const dropdownItems = document.querySelectorAll('.llm-dropdown-item');
+
+    // Toggle dropdown
+    dropdownTrigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isOpen = dropdownMenu.classList.contains('show');
+        
+        if (isOpen) {
+            closeDropdown();
+        } else {
+            openDropdown();
+        }
+    });
+
+    // Handle dropdown item selection
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const modelName = this.getAttribute('data-model');
+            
+            // Update selected model display
+            selectedLlmSpan.textContent = modelName;
+            
+            // Update selected state
+            dropdownItems.forEach(i => i.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // Close dropdown
+            closeDropdown();
+            
+            // You can add additional logic here to handle the model selection
+            console.log('Selected LLM model:', modelName);
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!dropdownTrigger.contains(e.target) && !dropdownMenu.contains(e.target)) {
+            closeDropdown();
+        }
+    });
+
+    // Close dropdown on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeDropdown();
+        }
+    });
+
+    function openDropdown() {
+        dropdownMenu.classList.add('show');
+        dropdownTrigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDropdown() {
+        dropdownMenu.classList.remove('show');
+        dropdownTrigger.setAttribute('aria-expanded', 'false');
+    }
+
+    // Set initial selected state
+    const defaultModel = 'gemma2-9b-it';
+    const defaultItem = document.querySelector(`[data-model="${defaultModel}"]`);
+    if (defaultItem) {
+        defaultItem.classList.add('selected');
+    }
+});
+</script>
+
 {% endblock %}
